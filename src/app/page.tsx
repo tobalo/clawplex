@@ -4,33 +4,37 @@ import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#F5F0E6] font-sans">
-      {/* Hero - Full bleed image, no overlay text */}
-      <section className="relative w-full h-[60vh] md:h-screen md:max-h-[800px]">
+    <div className="min-h-screen bg-[#F5F0E6]">
+      {/* Hero - Full bleed image */}
+      <section className="relative w-full h-[55vh] md:h-[70vh]">
         <img 
           src="/hero-lobster.jpg" 
           alt="Cowboy riding a lobster over Dallas" 
           className="h-full w-full object-cover object-center"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </section>
 
-      {/* About - Offset, less centered */}
-      <section className="px-4 py-12 -mt-20 relative z-10">
-        <div className="max-w-lg ml-auto pr-4 md:pr-8">
-          <h1 className="text-4xl md:text-7xl font-black text-[#CC5500] leading-[0.9] tracking-tighter">
-            CLAW<br/>PLEX
+      {/* About */}
+      <section className="px-4 md:px-6 -mt-16 relative z-10">
+        <div className="max-w-lg mx-auto md:mx-0 md:ml-auto md:pr-6">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-[#CC5500] tracking-tight">
+            CLAWPLEX
           </h1>
-          <p className="mt-4 md:mt-6 text-lg md:text-xl text-[#8B4513] max-w-xs">
+          <p className="mt-4 md:mt-6 text-lg md:text-xl text-[#8B4513]">
             Where DFW builds the future of AI.
+          </p>
+          <p className="mt-2 text-[#8B4513]/70 text-sm md:text-base">
+            Beginners welcome. Veterans encouraged. All skills level.
           </p>
         </div>
       </section>
 
-      {/* Event - Offset card, less rounded */}
-      <section className="px-4 pb-10">
-        <div className="max-w-sm ml-4 md:ml-6">
-          <div className="bg-white p-5 md:p-6 shadow-[6px_6px_0_#CC5500] md:shadow-[8px_8px_0_#CC5500]">
-            <p className="text-xs font-bold text-[#CC5500] uppercase tracking-widest mb-1">
+      {/* Event */}
+      <section className="px-4 md:px-6 py-10 md:py-12">
+        <div className="max-w-sm mx-auto md:mx-0 md:ml-4">
+          <div className="bg-white p-5 md:p-6">
+            <p className="text-xs font-semibold text-[#CC5500] uppercase tracking-wider mb-1">
               Next Event
             </p>
             <h2 className="text-xl md:text-2xl font-bold text-[#8B4513]">
@@ -43,7 +47,7 @@ export default function Home() {
               href="https://luma.com/clawcondfw?tk=k8qExi"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#CC5500] font-bold text-sm md:text-base hover:underline"
+              className="inline-flex items-center gap-2 text-[#CC5500] font-semibold hover:underline"
             >
               RSVP <ChevronRight className="h-4 w-4" />
             </a>
@@ -51,14 +55,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Actions - Full width, less rounded */}
-      <section className="px-4 pb-12">
-        <div className="flex flex-col gap-3 md:gap-4 max-w-sm ml-4 md:ml-6">
+      {/* Actions */}
+      <section className="px-4 md:px-6 pb-12">
+        <div className="flex flex-col gap-3 max-w-sm mx-auto md:mx-0 md:ml-4">
           <a
             href="https://discord.gg/q8kEquTu3z"
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-[#CC5500] text-white font-bold text-center py-4 px-6 shadow-[4px_4px_0_#8B4513] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#8B4513] transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            className="flex items-center justify-center gap-2 bg-[#CC5500] text-white font-semibold py-4 px-6 hover:bg-[#b84a00] transition-colors"
           >
             Join the Discord
           </a>
@@ -66,16 +70,16 @@ export default function Home() {
             href="https://luma.com/clawcondfw?tk=k8qExi"
             target="_blank"
             rel="noopener noreferrer"
-            className="block border-2 border-[#CC5500] text-[#CC5500] font-bold text-center py-4 px-6 hover:bg-[#CC5500] hover:text-white transition-colors"
+            className="flex items-center justify-center gap-2 border-2 border-[#CC5500] text-[#CC5500] font-semibold py-4 px-6 hover:bg-[#CC5500] hover:text-white transition-colors"
           >
             RSVP on Luma
           </a>
         </div>
       </section>
 
-      {/* Footer - Simple, less padded */}
-      <footer className="bg-[#8B4513] px-6 py-6">
-        <div className="flex justify-between items-center">
+      {/* Footer */}
+      <footer className="bg-[#8B4513] px-4 md:px-6 py-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-white/60 text-sm">
             Dallas-Fort Worth, TX
           </p>
