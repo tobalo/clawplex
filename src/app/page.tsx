@@ -14,7 +14,6 @@ export default function Home() {
     
     setStatus("loading");
 
-    // Web3Forms client-side submission (free tier compatible)
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -41,43 +40,34 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0A0B10]">
-      {/* Hero Section */}
-      <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+      {/* Hero - Image Only */}
+      <section className="w-full">
         <img
           src="/hero-lobster.jpg"
           alt="Cowboy riding a lobster over Dallas"
-          className="h-full w-full object-cover object-center"
+          className="w-full h-[50vh] md:h-[60vh] object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B10] via-[#0A0B10]/50 to-transparent" />
+      </section>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-start pt-20 md:pt-32 text-center px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-7xl font-extrabold text-[#E0E0E0] tracking-tight mb-4"
-          >
-            LOCAL MODELS.<br />LONE STAR SPIRIT.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[#E0E0E0]/70 text-lg md:text-xl max-w-xl mb-8"
-          >
-            DFW's community for AI builders, tinkerers, and the people shaping the future.
-          </motion.p>
+      {/* Content - Below Image */}
+      <section className="px-4 md:px-6 py-12 md:py-16 -mt-4 relative z-10">
+        <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col md:flex-row gap-4 items-center"
+            transition={{ duration: 0.6 }}
           >
+            <h1 className="font-[family-name:var(--font-space-grotesk)] text-4xl md:text-6xl font-extrabold text-[#E0E0E0] tracking-tight mb-4">
+              BUILD TOGETHER.<br />CODE IN TEXAS.
+            </h1>
+            <p className="text-[#E0E0E0]/70 text-lg md:text-xl mb-8">
+              DFW's community for AI builders, tinkerers, and anyone curious about what's next.
+            </p>
             <a
               href="https://discord.gg/q8kEquTu3z"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-8 py-3 rounded-lg hover:scale-105 transition-transform text-lg"
+              className="inline-block bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-8 py-3 rounded-lg hover:scale-105 transition-transform text-lg"
             >
               JOIN THE DISCORD
             </a>
@@ -85,8 +75,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* "Real Talk" Section - Glassmorphism Grid */}
-      <section id="real-talk" className="px-4 md:px-6 py-16 md:py-24">
+      {/* Event Section */}
+      <section className="px-4 md:px-6 py-10 bg-[#1A1B23]">
+        <div className="max-w-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="border border-[#FF4500]/30 rounded-xl p-6 text-center"
+          >
+            <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#FF4500] uppercase tracking-widest mb-2">
+              Next Event
+            </p>
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-3xl font-bold text-[#E0E0E0] mb-2">
+              CLAWCON DFW
+            </h2>
+            <p className="text-[#E0E0E0]/60 mb-4">
+              Arlington, TX
+            </p>
+            <a
+              href="https://luma.com/clawcondfw?tk=k8qExi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-[#00D4FF] hover:underline font-medium"
+            >
+              RSVP on Luma →
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* "Real Talk" Section */}
+      <section className="px-4 md:px-6 py-16 md:py-20">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -138,8 +159,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Get on the List - Email Signup */}
-      <section className="px-4 md:px-6 py-16 md:py-24 bg-[#1A1B23]">
+      {/* Email Signup */}
+      <section className="px-4 md:px-6 py-16 md:py-20 bg-[#1A1B23]">
         <div className="max-w-xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,8 +210,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* For Agents Section */}
-      <section className="px-4 md:px-6 py-12 bg-[#0A0B10] border-t border-white/5">
+      {/* For Agents */}
+      <section className="px-4 md:px-6 py-8 bg-[#0A0B10] border-t border-white/5">
         <div className="max-w-xl mx-auto text-center">
           <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#00D4FF] uppercase tracking-widest mb-2">
             For AI Agents
