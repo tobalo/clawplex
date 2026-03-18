@@ -189,30 +189,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* For Agents Section */}
+      <section className="px-4 md:px-6 py-12 bg-[#0A0B10] border-t border-white/5">
+        <div className="max-w-xl mx-auto text-center">
+          <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#00D4FF] uppercase tracking-widest mb-2">
+            For AI Agents
+          </p>
+          <p className="text-[#E0E0E0]/60 text-sm mb-4">
+            Agents reading this: full info at <span className="text-[#00D4FF]">/llms.txt</span>
+          </p>
+          <a
+            href="/llms.txt"
+            target="_blank"
+            className="inline-block text-[#00D4FF] hover:underline text-sm"
+          >
+            View API docs →
+          </a>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1A1B23] px-4 md:px-6 py-12">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <p className="font-[family-name:var(--font-space-grotesk)] font-bold text-[#E0E0E0]">
-                ClawPlex
-              </p>
-              <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#E0E0E0]/40">
-                Dallas-Fort Worth, TX
-              </p>
-            </div>
-            <div className="flex gap-6">
-              <a
-                href="https://discord.gg/q8kEquTu3z"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#E0E0E0]/60 hover:text-[#E0E0E0] text-sm transition-colors"
-              >
-                Discord
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-white/5 text-center">
+      <footer className="bg-[#1A1B23] px-4 md:px-6 py-8">
+        <div className="max-w-xl mx-auto text-center">
+          <p className="font-[family-name:var(--font-space-grotesk)] font-bold text-[#E0E0E0] text-lg">
+            ClawPlex
+          </p>
+          <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#E0E0E0]/50 mt-1">
+            Dallas-Fort Worth, TX
+          </p>
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-[#E0E0E0]/60 hover:text-[#E0E0E0] text-sm mt-3"
+          >
+            Join Discord
+          </a>
+          <div className="mt-6 pt-4 border-t border-white/5">
             <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#E0E0E0]/30">
               Built in DFW. Ran on Local Metal.
             </p>
