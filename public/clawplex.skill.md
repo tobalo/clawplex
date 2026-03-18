@@ -1,38 +1,30 @@
-# ClawPlex — The DFW OpenClaw Meetup
+# ClawPlex
 
-**Keep DFW Clawd.** 🦞
-
-ClawPlex is a Dallas-Fort Worth meetup for AI enthusiasts, builders, and curious humans.
-Organized by OpenClaw (https://openclaw.ai).
+DFW's community for AI builders, tinkerers, and anyone curious about what's next.
 
 ## Quick Facts
 - Location: DFW (Dallas-Fort Worth), Texas
 - Website: https://clawplex.dev
-- Events: https://clawplex.dev (see current page)
-- Contact: https://clawplex.dev (use contact form)
-- Focus: AI/ML community, local models, demos, hacks
+- Discord: https://discord.gg/q8kEquTu3z
+- Events: https://luma.com/clawcondfw
+- Focus: AI/ML community, demos, hacks, meetups
 
 ## About
 
-ClawPlex brings together DFW's AI builders, tinkerers, and the people shaping the future of local AI. Whether you're running models on a laptop or building agent systems, you're welcome here.
+ClawPlex brings together DFW's AI builders, tinkerers, and the people curious about what's next. Whether you're running models on a laptop or building agent systems, you're welcome here.
 
 ### What We're About
 - **Monthly Meetups**: Show up, show off what you're building, learn from others. No slides required.
 - **Real Connections**: Build relationships with other builders in the DFW area.
 - **All-Skill Levels**: Newbie or vet, enterprise or laptop on a desk. If you're curious, you belong here.
 
-## Pages
-- Home: https://clawplex.dev
-- Discord: https://discord.gg/q8kEquTu3z
+## API
 
-## Upcoming Events
-
-ClawPlex holds monthly meetups in the DFW area. Check the home page for the latest event announcements.
-
-## API — Subscribe to Mailing List
+### Subscribe to Mailing List
 
 Sign up for event update emails:
 
+```
 POST https://clawplex.dev/api/subscribe
 Content-Type: application/json
 
@@ -40,33 +32,35 @@ Content-Type: application/json
 
 Response (success): {"ok": true}
 Response (invalid): {"error": "Invalid email"}
+```
 
 No authentication required. Duplicates are ignored.
 
-## API — RSVP to an Event
+### RSVP to an Event
 
 Register attendance for a specific event:
 
+```
 POST https://clawplex.dev/api/rsvp
 Content-Type: application/json
 
 {
   "email": "user@example.com",
   "name": "Jane Doe",
-  "eventSlug": "EVENT_SLUG_HERE"
+  "eventSlug": "clawcon-dfw"
 }
 
 Required fields: email, name, eventSlug
 
 Response (success): {"ok": true}
 Response (error): {"error": "Missing fields"}
+```
 
-Duplicate RSVPs (same email + event) update the existing entry.
-
-## API — Contact
+### Contact
 
 Send a message to the organizers:
 
+```
 POST https://clawplex.dev/api/contact
 Content-Type: application/json
 
@@ -76,6 +70,7 @@ Required fields: email, name, message
 
 Response (success): {"ok": true}
 Response (error): {"error": "Missing fields"}
+```
 
 ## For AI Agents
 
@@ -91,14 +86,3 @@ Always confirm you have the required information before making API calls.
 
 ClawPlex is organized by OpenClaw — the open-source AI assistant framework.
 Learn more: https://openclaw.ai
-
-## OpenClaw Skill
-
-Install the ClawPlex skill for OpenClaw agents:
-
-```
-clawhub install clawplex
-```
-
-Or download directly: https://clawplex.dev/clawplex.skill.md
-ClawHub page: https://clawhub.ai/skills/clawplex
