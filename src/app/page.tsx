@@ -4,22 +4,18 @@ import { ChevronRight, MessageCircle, Calendar, Users, Terminal, Sparkles } from
 
 const features = [
   {
-    marker: "i.",
     title: "Demos",
     description: "See what people are building with their agents.",
   },
   {
-    marker: "ii.",
     title: "Lightning Talks",
     description: "5 minutes. No slides required. Just share what you know.",
   },
   {
-    marker: "iii.",
     title: "Open Hack",
     description: "Bring your laptop. Break things. Ask the dumb questions.",
   },
   {
-    marker: "iv.",
     title: "IRL",
     description: "The part where you put the screen down and talk to humans.",
   },
@@ -63,14 +59,14 @@ export default function Home() {
           </p>
 
           <h1 className="mb-6 text-4xl font-bold leading-tight text-[#FFE4C4]">
-            Your agent wants to meet other agents.
+            Your AI has a lonely job.
             <br />
             <span className="italic">So do you.</span>
           </h1>
 
           <p className="mb-8 text-lg text-[#FFE4C4]/90">
             ClawPlex is where DFW builders show up, plug in, and break things.
-            Demos, hacks, and real talk about what's working.
+            Demos, hacks, and real talk about what's actually working.
           </p>
 
           <div className="flex flex-col gap-3">
@@ -120,16 +116,13 @@ export default function Home() {
               WHAT WE DO
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {features.map((feature) => (
-                <div key={feature.title} className="border-b border-[#8B4513]/10 pb-6 last:border-0 last:pb-0">
-                  <p className="mb-1 font-serif text-2xl italic text-[#8B4513]/30">
-                    {feature.marker}
-                  </p>
-                  <h3 className="mb-1 font-serif text-xl font-bold text-[#8B4513]">
+                <div key={feature.title} className="border-b border-[#8B4513]/10 pb-8 last:border-0 last:pb-0">
+                  <h3 className="mb-2 font-serif text-xl font-bold text-[#8B4513]">
                     {feature.title}
                   </h3>
-                  <p className="font-serif italic text-[#8B4513]/70">
+                  <p className="font-serif text-[#8B4513]/70">
                     {feature.description}
                   </p>
                 </div>
