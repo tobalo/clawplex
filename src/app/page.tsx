@@ -1,29 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { ChevronRight, MessageCircle, Calendar, Users, Terminal, Sparkles } from "lucide-react";
 
 const features = [
   {
-    icon: Terminal,
+    marker: "i.",
+    title: "Demos",
+    description: "See what people are building with their agents.",
+  },
+  {
+    marker: "ii.",
+    title: "Lightning Talks",
+    description: "5 minutes. No slides required. Just share what you know.",
+  },
+  {
+    marker: "iii.",
     title: "Open Hack",
     description: "Bring your laptop. Break things. Ask the dumb questions.",
   },
   {
-    icon: MessageCircle,
-    title: "Show & Tell",
-    description: "Demo what you're building. Get feedback. Inspire others.",
-  },
-  {
-    icon: Calendar,
-    title: "ClawCon DFW",
-    description: "Our flagship event. Demos, talks, and IRL connections.",
-  },
-  {
-    icon: Users,
-    title: "Coffee & Chat",
-    description: "Just humans talking about AI. No agenda. No slides.",
+    marker: "iv.",
+    title: "IRL",
+    description: "The part where you put the screen down and talk to humans.",
   },
 ];
 
@@ -31,200 +29,154 @@ const links = [
   {
     label: "Join Discord",
     href: "https://discord.gg/q8kEquTu3z",
-    primary: true,
   },
   {
     label: "ClawCon DFW",
     href: "https://luma.com/clawcondfw?tk=k8qExi",
-    primary: false,
-  },
-  {
-    label: "ClawStin (Austin)",
-    href: "https://clawstin.com",
-    primary: false,
   },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans">
-      {/* Hero Section */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-24">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800 via-zinc-950 to-zinc-950" />
-        
-        {/* Animated grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 mx-auto max-w-3xl text-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-1.5 text-sm text-zinc-400"
-          >
-            <Sparkles className="h-4 w-4" />
-            <span>Chapter II</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mb-6 text-5xl font-bold tracking-tight sm:text-7xl"
-          >
-            Your agents are lonely.
-            <br />
-            <span className="text-zinc-400">So are you.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mb-10 text-lg text-zinc-400 sm:text-xl"
-          >
-            ClawPlex is where DFW builders show up, plug in, and break things.
-            No corporate ladder. No LinkedIn screening. Just demos, hacks,
-            and humans who care about AI.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-col gap-4 sm:flex-row sm:justify-center"
-          >
-            <a
-              href="https://discord.gg/q8kEquTu3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-zinc-100 px-8 text-zinc-950 font-medium transition-colors hover:bg-zinc-200"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Join the Discord
-            </a>
-            <a
-              href="https://luma.com/clawcondfw?tk=k8qExi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-zinc-800 px-8 text-zinc-400 font-medium transition-colors hover:bg-zinc-900 hover:text-zinc-50"
-            >
-              <Calendar className="h-5 w-5" />
-              ClawCon DFW
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="h-6 w-6 text-zinc-600"
-          >
-            <ChevronRight className="rotate-90" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* What We Do Section */}
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 text-center"
-          >
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">What We Do</h2>
-            <p className="text-zinc-400">Four ways to plug in.</p>
-          </motion.div>
-
-          <div className="grid gap-6 sm:grid-cols-2">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <Card className="border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors">
-                  <CardContent className="p-6">
-                    <feature.icon className="mb-4 h-8 w-8 text-zinc-400" />
-                    <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                    <p className="text-zinc-400">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+    <div className="min-h-screen bg-[#F5F0E6] text-[#8B4513] font-serif">
+      {/* Hero Section - Burnt Orange */}
+      <section className="relative overflow-hidden bg-[#CC5500] px-6 py-20">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="h-full w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC41Ij48cGF0aCBkPSJNMjAgMjBoMlYyMEgyMHptLTQgNGgydjJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')]" />
         </div>
-      </section>
 
-      {/* Who's Here Section */}
-      <section className="px-6 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl text-center"
-        >
-          <h2 className="mb-6 text-3xl font-bold sm:text-4xl">Who's Here</h2>
-          <p className="mb-8 text-zinc-400">
-            Builders, tinkerers, and people who actually use the things they build.
-            200+ members and growing.
+        <div className="relative mx-auto max-w-md text-center">
+          <p className="mb-4 font-sans text-sm tracking-[0.2em] text-[#FFE4C4]">
+            Chapter II
           </p>
-          <div className="flex justify-center gap-4">
+
+          <h1 className="mb-6 text-4xl font-bold leading-tight text-[#FFE4C4]">
+            Your agent wants to meet other agents.
+            <br />
+            <span className="italic">So do you.</span>
+          </h1>
+
+          <p className="mb-8 text-lg text-[#FFE4C4]/90">
+            ClawPlex is where DFW builders show up, plug in, and break things.
+            Demos, hacks, and real talk about what's working.
+          </p>
+
+          <div className="flex flex-col gap-3">
             {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex h-11 items-center justify-center rounded-full px-8 font-medium transition-colors ${
-                  link.primary
-                    ? "bg-zinc-100 text-zinc-950 hover:bg-zinc-200"
-                    : "border border-zinc-800 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-50"
-                }`}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#FFE4C4] px-8 font-sans font-semibold text-[#CC5500] transition-transform hover:scale-105"
               >
                 {link.label}
+                <ChevronRight className="h-4 w-4" />
               </a>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-800 px-6 py-12">
-        <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold">ClawPlex</span>
-            <span className="text-zinc-600">|</span>
-            <span className="text-zinc-400">DFW Personal AI</span>
-          </div>
-          <div className="flex gap-6 text-sm text-zinc-400">
-            <a href="https://openclaw.ai" className="hover:text-zinc-50 transition-colors">
-              OpenClaw
+      {/* Event Card - Cream */}
+      <section className="px-6 py-12">
+        <div className="mx-auto max-w-md">
+          <div className="rounded-2xl border-2 border-[#CC5500] bg-white p-6">
+            <p className="mb-2 font-sans text-xs tracking-widest text-[#CC5500]">
+              NEXT EVENT — Coming Soon
+            </p>
+            <p className="mb-4 font-sans text-sm text-[#8B4513]/60">
+              ClawCon DFW • Arlington, TX
+            </p>
+            <a
+              href="https://luma.com/clawcondfw?tk=k8qExi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-[#CC5500] hover:underline"
+            >
+              RSVP on Luma <ChevronRight className="h-4 w-4" />
             </a>
-            <a href="https://clawstin.com" className="hover:text-zinc-50 transition-colors">
-              ClawStin (Austin)
-            </a>
           </div>
-          <p className="text-sm text-zinc-600">© 2026 ClawPlex</p>
+        </div>
+      </section>
+
+      {/* Program Section - White */}
+      <section className="px-6 py-12">
+        <div className="mx-auto max-w-md">
+          <div className="rounded-2xl border border-[#8B4513]/20 bg-white p-6">
+            <h2 className="mb-6 font-sans text-xs tracking-widest text-[#8B4513]/50">
+              WHAT WE DO
+            </h2>
+
+            <div className="space-y-6">
+              {features.map((feature) => (
+                <div key={feature.title} className="border-b border-[#8B4513]/10 pb-6 last:border-0 last:pb-0">
+                  <p className="mb-1 font-serif text-2xl italic text-[#8B4513]/30">
+                    {feature.marker}
+                  </p>
+                  <h3 className="mb-1 font-serif text-xl font-bold text-[#8B4513]">
+                    {feature.title}
+                  </h3>
+                  <p className="font-serif italic text-[#8B4513]/70">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Email Signup - Cream */}
+      <section className="bg-[#FFE4C4] px-6 py-12">
+        <div className="mx-auto max-w-md text-center">
+          <p className="mb-2 font-serif italic text-[#8B4513]/70">
+            Stay in the loop
+          </p>
+          <h2 className="mb-4 font-serif text-3xl font-bold text-[#CC5500]">
+            Get on the list
+          </h2>
+          <p className="mb-6 font-sans text-xs tracking-widest text-[#8B4513]/60">
+            FOR FUTURE EVENTS
+          </p>
+          <p className="mb-6 font-serif italic text-[#8B4513]/70">
+            We'll email you when the next one's announced. Nothing else.
+          </p>
+          <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="you@email.com"
+              className="h-12 rounded-full border border-[#8B4513]/30 bg-white px-6 font-sans text-[#8B4513] placeholder-[#8B4513]/40 focus:border-[#CC5500] focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="h-12 rounded-full bg-[#CC5500] font-sans font-semibold text-white transition-transform hover:scale-105"
+            >
+              NOTIFY ME
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer - Dark Orange */}
+      <footer className="bg-[#8B4513] px-6 py-10">
+        <div className="mx-auto max-w-md text-center">
+          <p className="mb-6 font-sans text-xs tracking-widest text-white/60">
+            SUPPORTED BY
+          </p>
+          <div className="mb-6 flex justify-center gap-6">
+            {/* Placeholder logos - can be replaced */}
+            <div className="h-8 w-8 rounded border border-white/30" />
+            <div className="h-8 w-8 rounded border border-white/30" />
+            <div className="h-8 w-8 rounded border border-white/30" />
+          </div>
+          <p className="font-sans text-xs tracking-widest text-white/60">
+            A COMMUNITY THING FOR OPENCLAW • DALLAS-FORT WORTH, TX
+          </p>
+          <p className="mt-2 font-sans text-xs text-white/40">
+            Agents, look here
+          </p>
         </div>
       </footer>
     </div>
