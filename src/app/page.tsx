@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -10,49 +10,35 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!email) return;
     
     setStatus("loading");
+
+    // Web3Forms client-side submission (free tier compatible)
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "951a1825-4a6d-446b-a043-d2d633e03415",
+        email: email,
+        subject: "New ClawPlex Newsletter Signup",
+      }),
+    });
+
+    const data = await response.json();
     
-    // Get the access key from environment variable
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-    
-    if (!accessKey) {
+    if (data.success) {
+      setStatus("success");
+      setMessage("You're in! Watch your inbox for updates.");
+      setEmail("");
+    } else {
       setStatus("error");
-      setMessage("Form not configured. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY to your .env.local file.");
-      return;
-    }
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          email: email,
-          subject: "New ClawPlex Newsletter Signup",
-          from_email: email,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setStatus("success");
-        setMessage("You're in! Watch your inbox for updates.");
-        setEmail("");
-      } else {
-        setStatus("error");
-        setMessage(data.message || "Something went wrong. Please try again.");
-      }
-    } catch {
-      setStatus("error");
-      setMessage("Failed to submit. Please try again.");
+      setMessage(data.message || "Something went wrong. Try again.");
     }
   };
+
   return (
     <div className="min-h-screen bg-[#0A0B10]">
       {/* Hero Section */}
@@ -122,17 +108,14 @@ export default function Home() {
               {
                 title: "Monthly Meetups",
                 desc: "Show up, show off what you're building, learn from others. No slides required.",
-                icon: "📍",
               },
               {
                 title: "Local-First Philosophy",
                 desc: "Your data stays on your machine. We believe in AI that runs where you tell it to.",
-                icon: "🔒",
               },
               {
                 title: "All-Skill Levels",
                 desc: "Newbie or vet, enterprise or laptop on a desk. If you're curious, you belong here.",
-                icon: "🌟",
               },
             ].map((item, i) => (
               <motion.div
@@ -141,9 +124,8 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass rounded-xl p-6 hover-scale cursor-pointer"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:scale-105 transition-transform cursor-pointer"
               >
-                <span className="text-3xl mb-4 block">{item.icon}</span>
                 <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-[#E0E0E0] mb-2">
                   {item.title}
                 </h3>
@@ -174,28 +156,34 @@ export default function Home() {
             <p className="text-[#E0E0E0]/60 mb-8">
               Be the first to know about ClawCon and upcoming meetups.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleSubmit}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status === "loading" || status === "success"}
-                className="flex-1 bg-[#0A0B10] border border-white/10 rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#E0E0E0]/30 focus:outline-none focus:border-[#FF4500] disabled:opacity-50"
-                required
-              />
-              <button
-                type="submit"
-                disabled={status === "loading" || status === "success"}
-                className="bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === "loading" ? "..." : status === "success" ? "✓" : "JOIN"}
-              </button>
-            </form>
-            {message && (
-              <p className={`mt-4 text-sm ${status === "success" ? "text-green-400" : status === "error" ? "text-red-400" : "text-[#E0E0E0]/60"}`}>
+            
+            {status === "success" ? (
+              <div className="bg-[#FF4500]/20 border border-[#FF4500]/30 rounded-lg p-4 text-[#FF4500]">
                 {message}
-              </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === "loading"}
+                  required
+                  className="flex-1 bg-[#0A0B10] border border-white/10 rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#E0E0E0]/30 focus:outline-none focus:border-[#FF4500] disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {status === "loading" ? "..." : "SUBMIT"}
+                </button>
+              </form>
+            )}
+            
+            {status === "error" && (
+              <p className="text-red-400 text-sm mt-2">{message}</p>
             )}
           </motion.div>
         </div>
