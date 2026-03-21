@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { faqs, hosts, nextEvent, valueProps } from "@/content/site";
+import { faqs, hosts, nextEvent, valueProps, venueDetails, venueHighlights } from "@/content/site";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -98,11 +98,26 @@ export default function Home() {
                 <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#E0E0E0]">
                   {nextEvent.name}
                 </h2>
-                <p className="mt-1 text-sm text-[#E0E0E0]/60">{nextEvent.city}</p>
-                <p className="mt-4 text-sm leading-6 text-[#E0E0E0]/70">{nextEvent.summary}</p>
-                <p className="mt-4 font-[family-name:var(--font-jetbrains-mono)] text-[11px] uppercase tracking-[0.25em] text-[#E0E0E0]/45">
-                  {nextEvent.venue}
+                <p className="mt-1 text-sm text-[#E0E0E0]/60">
+                  {nextEvent.venue}, {nextEvent.city}
                 </p>
+                <p className="mt-4 text-sm leading-6 text-[#E0E0E0]/70">{nextEvent.summary}</p>
+                <p className="mt-4 text-sm leading-6 text-[#E0E0E0]/68">{nextEvent.address}</p>
+                <div className="mt-4 space-y-2">
+                  {venueHighlights.map((highlight) => (
+                    <p key={highlight} className="text-xs leading-5 text-[#E0E0E0]/55">
+                      {highlight}
+                    </p>
+                  ))}
+                </div>
+                <a
+                  href={nextEvent.venueUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex text-sm font-medium text-[#00D4FF] hover:underline"
+                >
+                  View venue details →
+                </a>
               </div>
             </motion.div>
           </div>
@@ -174,6 +189,39 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-12 md:px-6 md:py-14">
+        <div className="mx-auto max-w-5xl rounded-[1.75rem] border border-white/10 bg-[#131722] p-6 md:p-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid gap-6 md:grid-cols-[1fr_1.1fr]"
+          >
+            <div>
+              <p className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
+                Venue
+              </p>
+              <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0]">
+                {venueDetails.title}
+              </h2>
+            </div>
+            <div>
+              <p className="text-sm leading-7 text-[#E0E0E0]/70">
+                {venueDetails.description}
+              </p>
+              <div className="mt-5 space-y-3">
+                {venueDetails.facts.map((fact) => (
+                  <div key={fact} className="rounded-xl border border-white/8 bg-black/15 p-4">
+                    <p className="text-sm leading-6 text-[#E0E0E0]/68">{fact}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

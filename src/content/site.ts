@@ -1,11 +1,19 @@
 export const nextEvent = {
   name: "ClawCon DFW",
   city: "Arlington, TX",
-  venue: "DFW meetup venue announced in Discord",
+  venue: "Spark Coworking",
+  venueUrl: "https://sparkcoworking.com/arlington/",
+  address: "1000 Ballpark Way, Suite 310, Arlington, TX 76011",
   url: "https://luma.com/clawcondfw?tk=k8qExi",
   summary:
-    "Live demos, local builders, practical AI talk, and a room full of people shipping things.",
+    "Live demos, local builders, practical AI talk, and a room full of people shipping things inside Arlington's stadium district.",
 };
+
+export const venueHighlights = [
+  "Located inside Choctaw Stadium, next to the Texas Live! district.",
+  "Coworking-style setup with meeting rooms, lounge space, kitchen access, and reliable high-speed internet.",
+  "On-site parking garage and a built-for-events atmosphere that fits builder meetups well.",
+];
 
 export const valueProps = [
   {
@@ -30,6 +38,17 @@ export const hosts = [
       "The local chapter is run by DFW builders focused on practical AI, local-first workflows, and community energy.",
   },
 ];
+
+export const venueDetails = {
+  title: "Why Spark works for ClawPlex",
+  description:
+    "Spark Arlington is a collaborative coworking space built for entrepreneurs, creators, and innovators. It gives the meetup a real working-builder environment instead of a generic event room.",
+  facts: [
+    "Inside Choctaw Stadium in Arlington's entertainment district",
+    "Official address: 1000 Ballpark Way, Suite 310, Arlington, TX 76011",
+    "Amenities listed by Spark include meeting rooms, lounge and kitchen space, coffee, high-speed internet, and parking",
+  ],
+};
 
 export const faqs = [
   {
