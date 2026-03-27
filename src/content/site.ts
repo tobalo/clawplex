@@ -1,19 +1,20 @@
 export const nextEvent = {
-  name: "ClawCon DFW",
-  city: "Arlington, TX",
-  venue: "Spark Coworking",
-  venueUrl: "https://sparkcoworking.com/arlington/",
-  address: "1000 Ballpark Way, Suite 310, Arlington, TX 76011",
-  url: "https://luma.com/clawcondfw?tk=k8qExi",
+  name: "April Meetup",
+  city: "DFW",
+  venue: "Details TBD",
+  venueUrl: "#",
+  address: "Date and location coming soon — join the Discord for updates.",
+  url: "https://discord.gg/q8kEquTu3z",
   summary:
-    "Live demos, local builders, practical AI talk, and a room full of people shipping things inside Arlington's stadium district.",
+    "We're planning the next one now. Sign up for the newsletter or join Discord to get notified as soon as we lock in the details.",
 };
 
-export const venueHighlights = [
-  "Located inside Choctaw Stadium, next to the Texas Live! district.",
-  "Coworking-style setup with meeting rooms, lounge space, kitchen access, and reliable high-speed internet.",
-  "On-site parking garage and a built-for-events atmosphere that fits builder meetups well.",
-];
+export const marchRecap = {
+  eventName: "ClawCon DFW",
+  attendance: "4 demos",
+  location: "Spark Coworking, Arlington",
+  highlight: "A small but mighty crew — 4 live demos, real projects, and good conversation.",
+};
 
 export const valueProps = [
   {
@@ -39,17 +40,6 @@ export const hosts = [
   },
 ];
 
-export const venueDetails = {
-  title: "Why Spark works for ClawPlex",
-  description:
-    "Spark Arlington is a collaborative coworking space built for entrepreneurs, creators, and innovators. It gives the meetup a real working-builder environment instead of a generic event room.",
-  facts: [
-    "Inside Choctaw Stadium in Arlington's entertainment district",
-    "Official address: 1000 Ballpark Way, Suite 310, Arlington, TX 76011",
-    "Amenities listed by Spark include meeting rooms, lounge and kitchen space, coffee, high-speed internet, and parking",
-  ],
-};
-
 export const faqs = [
   {
     question: "Do I need to be an AI expert?",
@@ -64,3 +54,16 @@ export const faqs = [
     answer: "No. Local-first AI is part of the culture, but the meetup is broader than one stack choice.",
   },
 ];
+
+export const sponsorship = {
+  title: "Sponsors & Venue Hosts",
+  description:
+    "ClawPlex is looking for sponsors to help keep the meetup free and accessible. We're also looking for venue hosts for future events across DFW.",
+  benefits: [
+    "Reach 100+ DFW builders, founders, and tech professionals",
+    "Brand visibility at every meetup and online",
+    "Support the local AI community",
+  ],
+  contact: "https://discord.gg/q8kEquTu3z",
+  contactLabel: "Reach out on Discord",
+};

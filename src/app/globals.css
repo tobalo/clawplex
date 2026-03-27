@@ -45,48 +45,56 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── Premium Minimalist (ClawPlex DFW) ── */
+  --color-claw-black: #000000;
+  --color-claw-white: #FFFFFF;
+  --color-claw-ghost: #F5F5F5;
+  --color-claw-orange: #FF4500;
+  --spacing-128: 32rem;
+  --tracking-tightest: -0.04em;
+  --tracking-widest-premium: 0.1em;
 }
 
 :root {
-  /* Neon-Western Noir Theme */
-  --midnight-oil: #0A0B10;
-  --lobster-red: #FF4500;
-  --electric-blue: #00D4FF;
-  --raw-canvas: #E0E0E0;
-  --deep-purple: #1A1B23;
-  
-  --background: var(--midnight-oil);
-  --foreground: var(--raw-canvas);
-  --card: var(--deep-purple);
-  --card-foreground: var(--raw-canvas);
-  --popover: var(--deep-purple);
-  --popover-foreground: var(--raw-canvas);
-  --primary: var(--lobster-red);
-  --primary-foreground: #ffffff;
-  --secondary: var(--electric-blue);
-  --secondary-foreground: var(--midnight-oil);
-  --muted: var(--deep-purple);
-  --muted-foreground: rgba(224, 224, 224, 0.6);
-  --accent: var(--deep-purple);
-  --accent-foreground: var(--raw-canvas);
+  /* Premium Minimalist Theme — white/black/ghost-grey */
+  --claw-black: #000000;
+  --claw-white: #FFFFFF;
+  --claw-ghost: #F5F5F5;
+  --claw-orange: #FF4500;
+
+  --background: var(--claw-white);
+  --foreground: var(--claw-black);
+  --card: var(--claw-white);
+  --card-foreground: var(--claw-black);
+  --popover: var(--claw-white);
+  --popover-foreground: var(--claw-black);
+  --primary: var(--claw-black);
+  --primary-foreground: var(--claw-white);
+  --secondary: var(--claw-ghost);
+  --secondary-foreground: var(--claw-black);
+  --muted: var(--claw-ghost);
+  --muted-foreground: #666666;
+  --accent: var(--claw-ghost);
+  --accent-foreground: var(--claw-black);
   --destructive: #ef4444;
-  --border: rgba(224, 224, 224, 0.1);
-  --input: rgba(224, 224, 224, 0.1);
-  --ring: var(--lobster-red);
-  --chart-1: var(--lobster-red);
-  --chart-2: var(--electric-blue);
-  --chart-3: #8b5cf6;
-  --chart-4: #10b981;
-  --chart-5: #f59e0b;
-  --radius: 0.5rem;
-  --sidebar: var(--deep-purple);
-  --sidebar-foreground: var(--raw-canvas);
-  --sidebar-primary: var(--lobster-red);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--midnight-oil);
-  --sidebar-accent-foreground: var(--raw-canvas);
-  --sidebar-border: rgba(224, 224, 224, 0.1);
-  --sidebar-ring: var(--lobster-red);
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: var(--claw-black);
+  --chart-1: var(--claw-black);
+  --chart-2: #666666;
+  --chart-3: #999999;
+  --chart-4: #CCCCCC;
+  --chart-5: #E5E5E5;
+  --radius: 0px; /* ZERO rounded corners — premium minimalist */
+  --sidebar: var(--claw-white);
+  --sidebar-foreground: var(--claw-black);
+  --sidebar-primary: var(--claw-black);
+  --sidebar-primary-foreground: var(--claw-white);
+  --sidebar-accent: var(--claw-ghost);
+  --sidebar-accent-foreground: var(--claw-black);
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: var(--claw-black);
 }
 
 @layer base {
@@ -101,7 +109,7 @@
   }
 }
 
-/* Film grain overlay */
+/* ── Film grain (subtle texture) ── */
 .film-grain {
   position: fixed;
   top: 0;
@@ -110,30 +118,6 @@
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.02;
+  opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-
-/* Glassmorphism utility */
-.glass {
-  background: rgba(26, 27, 35, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(224, 224, 224, 0.1);
-}
-
-/* Hover scale transform */
-.hover-scale {
-  transition: transform 0.2s ease;
-}
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--lobster-red), var(--electric-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }

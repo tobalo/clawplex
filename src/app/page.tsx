@@ -2,10 +2,298 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { faqs, hosts, nextEvent, valueProps, venueDetails, venueHighlights } from "@/content/site";
 
-export default function Home() {
+// ─── Navigation ──────────────────────────────────────────────────────────────
+function Nav() {
+  return (
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden">
+            <Image src="/hero-lobster.jpg" alt="ClawPlex brand seal" fill className="object-cover" />
+          </div>
+          <span className="font-sans text-sm font-bold uppercase tracking-widest text-black">
+            ClawPlex
+          </span>
+          <span className="border border-black/20 bg-black/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-black">
+            DFW
+          </span>
+        </div>
+        <div className="flex items-center gap-8">
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs uppercase tracking-widest text-black/70 hover:text-black hover:underline"
+          >
+            Discord
+          </a>
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-b border-black pb-0.5 font-mono text-xs uppercase tracking-widest text-black hover:text-black/70"
+          >
+            Join the Node →
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+function Hero() {
+  return (
+    <section className="relative">
+      {/* Cowboy Lobster — full width hero image */}
+      <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
+        <Image
+          src="/hero-lobster.jpg"
+          alt="Cowboy riding a lobster over Dallas — ClawPlex DFW"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+        {/* Bottom gradient fade into white */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-white" />
+      </div>
+
+      {/* Hero text content */}
+      <div className="px-6 py-16 md:py-20 max-w-7xl mx-auto text-center">
+        <h1 className="text-5xl md:text-8xl font-sans font-bold tracking-[-0.04em] uppercase text-black">
+          ClawPlex — DFW
+        </h1>
+        <p className="mt-6 text-sm md:text-base font-mono text-black/70 uppercase tracking-[0.1em]">
+          ◆ For you & your agent ◇
+        </p>
+        <p className="mt-5 max-w-xl mx-auto text-base md:text-lg font-sans text-black/80 leading-relaxed">
+          The home base for DFW builders shipping practical AI. Demos, lightning talks, and real-world engineering.
+        </p>
+        <div className="mt-12 flex justify-center gap-8 font-mono text-xs uppercase tracking-widest text-black/80">
+          <span>100+ Builders</span>
+          <span>/</span>
+          <span>Live Demos</span>
+          <span>/</span>
+          <span>No Posture</span>
+        </div>
+        <div className="mt-10 flex justify-center gap-4">
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-claw-orange bg-claw-orange px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-white hover:bg-claw-orange/80"
+          >
+            Join Discord →
+          </a>
+          <a
+            href="#recap"
+            className="border border-black/20 bg-transparent px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-black hover:border-black hover:bg-black/5"
+          >
+            See Recap ↓
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── The Signal — March 24 Recap ─────────────────────────────────────────────
+function TheSignal() {
+  return (
+    <section id="recap" className="border-t border-black/10 px-6 py-24 md:py-40">
+      <div className="mx-auto max-w-7xl">
+        {/* Header row */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-black/80 mb-3">
+              ◆ The Signal
+            </p>
+            <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-[-0.04em] text-black leading-none">
+              ClawCon DFW.
+            </h2>
+            <p className="mt-4 font-mono text-xs uppercase tracking-widest text-black/80">
+              March 24, 2026 — Spark Coworking, Arlington TX
+            </p>
+          </div>
+          <div className="font-mono text-xs uppercase tracking-widest text-black/80">
+            [View the March Gallery →]
+          </div>
+        </div>
+
+        {/* Social proof anchor */}
+        <div className="mb-16 grid grid-cols-3 border border-black/10">
+          <div className="border-b border-r border-black/10 p-8 md:p-12">
+            <p className="text-4xl md:text-6xl font-sans font-bold text-black">100+</p>
+            <p className="mt-2 font-mono text-xs uppercase tracking-widest text-black/80">
+              ◆ Attendees
+            </p>
+          </div>
+          <div className="border-b border-r border-black/10 p-8 md:p-12">
+            <p className="text-4xl md:text-6xl font-sans font-bold text-black">8</p>
+            <p className="mt-2 font-mono text-xs uppercase tracking-widest text-black/80">
+              ◇ Live Demos
+            </p>
+          </div>
+          <div className="border-b border-black/10 p-8 md:p-12">
+            <p className="text-4xl md:text-6xl font-sans font-bold text-black">1</p>
+            <p className="mt-2 font-mono text-xs uppercase tracking-widest text-black/80">
+              ◆ Node Launched
+            </p>
+          </div>
+          <div className="col-span-3 grid grid-cols-3">
+            <div className="border-r border-black/10 p-8 md:p-12">
+              <p className="font-mono text-xs uppercase tracking-widest text-black/80">
+                ◇ Venue
+              </p>
+              <p className="mt-1 font-sans text-sm font-medium text-black">Spark Coworking</p>
+            </div>
+            <div className="border-r border-black/10 p-8 md:p-12">
+              <p className="font-mono text-xs uppercase tracking-widest text-black/80">
+                ◇ Format
+              </p>
+              <p className="mt-1 font-sans text-sm font-medium text-black">No Slides. Just Build.</p>
+            </div>
+            <div className="p-8 md:p-12">
+              <p className="font-mono text-xs uppercase tracking-widest text-black/80">
+                ◇ Next
+              </p>
+              <p className="mt-1 font-sans text-sm font-medium text-black">April 2026 — TBD</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Photo Gallery Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-0 border border-black/10">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="relative border border-black/10 bg-claw-ghost overflow-hidden" style={{ height: "200px" }}>
+              <Image
+                src={`/clawcon-${i}.jpg`}
+                alt={`ClawCon DFW photo ${i}`}
+                fill
+                className="object-cover hover:opacity-80 transition-opacity duration-300"
+              />
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-widest text-black/50">
+          ClawCon DFW · Arlington TX · March 24, 2026
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─── Active Node — April TBD ─────────────────────────────────────────────────
+function ActiveNode() {
+  return (
+    <section className="bg-black px-6 py-24 md:py-40">
+      <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+        <div className="space-y-6">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">
+            ◆ Active Node
+          </p>
+          <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-[-0.04em] text-white leading-none">
+            DFW Node 02.
+          </h2>
+          <p className="font-mono text-xs uppercase tracking-widest text-white/70">
+            Next Event — April 2026 (TBD)
+          </p>
+          <p className="max-w-md text-base text-white/80 leading-relaxed">
+            We are currently provisioning a venue for our next 100+ person gathering.
+            Final coordinates will be dropped in Discord.
+          </p>
+        </div>
+        <div className="shrink-0">
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block border border-claw-orange bg-claw-orange px-12 py-6 font-sans font-bold uppercase tracking-widest text-white hover:bg-claw-orange/80"
+          >
+            Join Discord for Coordinates →
+          </a>
+          <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-white/50">
+            OpenClaw DFW · 100+ Node
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Strategic Growth — Partnerships ─────────────────────────────────────────
+function Partnerships() {
+  return (
+    <section className="border-t border-black/10 bg-claw-ghost px-6 py-24 md:py-40">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-20">
+        {/* Left: Value prop */}
+        <div className="space-y-8">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-black/80">
+            ◆ Strategic Growth
+          </p>
+          <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-[-0.04em] leading-none text-black">
+            Scale the DFW
+            <br />
+            AI Infrastructure.
+          </h2>
+          <p className="text-lg text-black/70 leading-relaxed max-w-md">
+            Following our 100+ person turnout in March, we are actively provisioning venues
+            and resources for our April node and beyond.
+          </p>
+        </div>
+
+        {/* Right: Two contact paths */}
+        <div className="grid grid-cols-1 gap-12">
+          <div className="group border-t border-black/10 pt-8">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-black/50 mb-3">
+              i.
+            </p>
+            <h3 className="text-xl font-sans font-bold uppercase text-black mb-3">
+              Venue Hosting
+            </h3>
+            <p className="text-black/70 mb-5 leading-relaxed">
+              We seek spaces in Arlington, Dallas, or Plano capable of hosting 100+ builders
+              with high-density power and Wi-Fi.
+            </p>
+            <a
+              href="https://discord.gg/q8kEquTu3z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-sm text-black hover:text-black/80 hover:underline underline-offset-4"
+            >
+              DISCORD →
+            </a>
+          </div>
+
+          <div className="group border-t border-black/10 pt-8">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-black/50 mb-3">
+              ii.
+            </p>
+            <h3 className="text-xl font-sans font-bold uppercase text-black mb-3">
+              Hardware & Logistics
+            </h3>
+            <p className="text-black/70 mb-5 leading-relaxed">
+              Support the DFW community with compute credits, snacks, or hardware demos for
+              our live &quot;No Posture&quot; sessions.
+            </p>
+            <a
+              href="https://discord.gg/q8kEquTu3z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-sm text-black hover:text-black/80 hover:underline underline-offset-4"
+            >
+              JOIN_DISCORD →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Newsletter ───────────────────────────────────────────────────────────────
+function Newsletter() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -13,371 +301,159 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
     setStatus("loading");
-
-    const response = await fetch("/api/subscribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-      }),
-    });
-
-    const data = await response.json();
-    
-    if (response.ok && data.ok) {
-      setStatus("success");
-      setMessage("You're in! Watch your inbox for updates.");
-      setEmail("");
-    } else {
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (response.ok && data.ok) {
+        setStatus("success");
+        setMessage("You&apos;re in. Watch your inbox for updates.");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.message || "Something went wrong. Try again.");
+      }
+    } catch {
       setStatus("error");
-      setMessage(data.message || "Something went wrong. Try again.");
+      setMessage("Something went wrong. Try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0B10]">
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,212,255,0.18),transparent_35%),linear-gradient(180deg,rgba(10,11,16,0.2),rgba(10,11,16,0.92))]" />
-        <div className="relative w-full h-[46vh] min-h-[360px]">
-          <Image
-            src="/hero-lobster.jpg"
-            alt="Cowboy riding a lobster over Dallas"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
-        <section className="relative z-10 px-4 pb-10 md:px-6 md:pb-14">
-          <div className="mx-auto -mt-24 max-w-5xl rounded-[2rem] border border-white/10 bg-[#0A0B10]/82 p-6 shadow-2xl shadow-[#000]/30 backdrop-blur md:-mt-28 md:p-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="grid gap-8 md:grid-cols-[1.4fr_0.9fr]"
-            >
-              <div>
-                <p className="mb-3 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.35em] text-[#00D4FF]">
-                  DFW OpenClaw Chapter
-                </p>
-                <h1 className="mb-4 font-[family-name:var(--font-space-grotesk)] text-4xl font-extrabold tracking-tight text-[#E0E0E0] md:text-6xl">
-                  BUILD TOGETHER.
-                  <br />
-                  CODE IN TEXAS.
-                </h1>
-                <p className="max-w-2xl text-base text-[#E0E0E0]/72 md:text-lg">
-                  ClawPlex is the Dallas-Fort Worth home base for builders shipping AI projects,
-                  local-model experiments, and live demos with other people doing the work.
-                </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href="https://discord.gg/q8kEquTu3z"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg bg-[#FF4500] px-6 py-3 font-[family-name:var(--font-space-grotesk)] text-base font-bold text-white transition-transform hover:scale-[1.02]"
-                  >
-                    Join the Discord
-                  </a>
-                  <a
-                    href={nextEvent.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg border border-[#00D4FF]/50 bg-[#00D4FF]/8 px-6 py-3 font-[family-name:var(--font-space-grotesk)] text-base font-bold text-[#DDF8FF] transition-colors hover:bg-[#00D4FF]/14"
-                  >
-                    RSVP Now
-                  </a>
-                </div>
-              </div>
-              <div className="rounded-[1.5rem] border border-[#FF4500]/20 bg-[#141621] p-5">
-                <p className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
-                  Next Event
-                </p>
-                <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#E0E0E0]">
-                  {nextEvent.name}
-                </h2>
-                <p className="mt-1 text-sm text-[#E0E0E0]/60">
-                  {nextEvent.venue}, {nextEvent.city}
-                </p>
-                <p className="mt-4 text-sm leading-6 text-[#E0E0E0]/70">{nextEvent.summary}</p>
-                <p className="mt-4 text-sm leading-6 text-[#E0E0E0]/68">{nextEvent.address}</p>
-                <div className="mt-4 space-y-2">
-                  {venueHighlights.map((highlight) => (
-                    <p key={highlight} className="text-xs leading-5 text-[#E0E0E0]/55">
-                      {highlight}
-                    </p>
-                  ))}
-                </div>
-                <a
-                  href={nextEvent.venueUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex text-sm font-medium text-[#00D4FF] hover:underline"
-                >
-                  View venue details →
-                </a>
-              </div>
-            </motion.div>
+    <section className="border-t border-black/10 px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-2xl text-center">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-black/80 mb-4">
+          ◆ Stay in the Loop
+        </p>
+        <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-[-0.04em] text-black">
+          Get the next drop.
+        </h2>
+        <p className="mt-4 text-base text-black/70">
+          Event reminders, venue drops, and DFW AI community updates.
+        </p>
+
+        {status === "success" ? (
+          <div className="mt-8 border border-black/20 bg-claw-ghost p-6 font-mono text-sm text-black">
+            {message}
           </div>
-        </section>
-      </section>
-
-      <section className="px-4 py-12 md:px-6 md:py-16">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid gap-6 md:grid-cols-[0.8fr_1.2fr]"
-          >
-            <div>
-              <h2 className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
-                What Is ClawPlex
-              </h2>
-              <p className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0] md:text-4xl">
-                A local AI chapter for people who actually build.
-              </p>
-            </div>
-            <div className="space-y-4 text-base leading-7 text-[#E0E0E0]/72">
-              <p>
-                ClawPlex is where Dallas-Fort Worth builders meet to show work, compare notes,
-                and trade practical AI lessons without turning the night into a slide deck parade.
-              </p>
-              <p>
-                It is for first-time builders, cracked local-model tinkerers, startup teams, and
-                anyone who wants a room with signal instead of hype.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="bg-[#12141d] px-4 py-12 md:px-6 md:py-14">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 text-center"
-          >
-            <p className="mb-1 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
-              Why People Show Up
-            </p>
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#E0E0E0] md:text-4xl">
-              Local signal, not generic tech-event theater.
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {valueProps.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+        ) : (
+          <form onSubmit={handleSubmit} className="mt-8">
+            <div className="flex flex-col gap-0 sm:flex-row">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading"}
+                required
+                className="flex-1 border border-black/20 bg-white px-5 py-4 font-mono text-sm text-black placeholder:text-black/25 focus:border-black focus:outline-none focus:ring-0 disabled:opacity-50"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="border border-black bg-black px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-white hover:bg-black/80 disabled:opacity-50"
               >
-                <h3 className="mb-2 font-[family-name:var(--font-space-grotesk)] text-lg font-bold text-[#E0E0E0]">
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-6 text-[#E0E0E0]/65">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 py-12 md:px-6 md:py-14">
-        <div className="mx-auto max-w-5xl rounded-[1.75rem] border border-white/10 bg-[#131722] p-6 md:p-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid gap-6 md:grid-cols-[1fr_1.1fr]"
-          >
-            <div>
-              <p className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
-                Venue
-              </p>
-              <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0]">
-                {venueDetails.title}
-              </h2>
+                {status === "loading" ? "..." : "Join the List"}
+              </button>
             </div>
-            <div>
-              <p className="text-sm leading-7 text-[#E0E0E0]/70">
-                {venueDetails.description}
-              </p>
-              <div className="mt-5 space-y-3">
-                {venueDetails.facts.map((fact) => (
-                  <div key={fact} className="rounded-xl border border-white/8 bg-black/15 p-4">
-                    <p className="text-sm leading-6 text-[#E0E0E0]/68">{fact}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="px-4 py-12 md:px-6 md:py-14">
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-[1.5rem] border border-white/10 bg-[#151823] p-6"
-          >
-            <h2 className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#00D4FF]">
-              Meet the Hosts
-            </h2>
-            <p className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0]">
-              Builders from DFW, for DFW.
-            </p>
-            {hosts.map((host) => (
-              <div key={host.name} className="mt-4 rounded-xl border border-white/8 bg-black/15 p-4">
-                <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold text-[#E0E0E0]">
-                  {host.name}
-                </h3>
-                <p className="mt-1 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.25em] text-[#FF4500]">
-                  {host.role}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-[#E0E0E0]/68">{host.description}</p>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-[1.5rem] border border-white/10 bg-[#151823] p-6"
-          >
-            <h2 className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#00D4FF]">
-              FAQ
-            </h2>
-            <p className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0]">
-              First meetup?
-            </p>
-            <div className="mt-5 space-y-4">
-              {faqs.map((faq) => (
-                <div key={faq.question} className="rounded-xl border border-white/8 bg-black/15 p-4">
-                  <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold text-[#E0E0E0]">
-                    {faq.question}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#E0E0E0]/68">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="bg-[#1A1B23] px-4 py-10 md:px-6 md:py-12">
-        <div className="mx-auto max-w-3xl rounded-[1.75rem] border border-[#FF4500]/20 bg-[#10121a] p-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="mb-2 font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.3em] text-[#FF4500]">
-              Stay in the Loop
-            </p>
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[#E0E0E0] md:text-4xl">
-              Join the list
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#E0E0E0]/65">
-              Get the next meetup drop, event reminders, and updates from the DFW chapter.
-            </p>
-
-            {status === "success" ? (
-              <div className="mt-5 rounded-lg border border-[#FF4500]/30 bg-[#FF4500]/20 p-3 text-sm text-[#FF4500]">
-                {message}
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="mx-auto mt-5 max-w-2xl">
-                <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </label>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <input
-                    id="newsletter-email"
-                    type="email"
-                    aria-label="Email address"
-                    placeholder="your@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={status === "loading"}
-                    required
-                    className="flex-1 rounded-lg border border-white/10 bg-[#0A0B10] px-3 py-3 text-sm text-[#E0E0E0] placeholder:text-[#E0E0E0]/30 focus:border-[#FF4500] focus:outline-none disabled:opacity-50"
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="rounded-lg bg-[#FF4500] px-5 py-3 font-[family-name:var(--font-space-grotesk)] text-sm font-bold text-white transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    {status === "loading" ? "Joining..." : "Join the list"}
-                  </button>
-                </div>
-              </form>
+            {status === "error" && (
+              <p className="mt-2 text-left font-mono text-xs text-red-600">{message}</p>
             )}
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
 
-            {status === "error" && <p className="mt-3 text-xs text-red-400">{message}</p>}
-
-            <div className="mt-8 border-t border-white/5 pt-5">
-              <p className="font-[family-name:var(--font-space-grotesk)] text-base font-bold text-[#E0E0E0]">
-                ClawPlex
-              </p>
-              <p className="mt-0.5 font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#E0E0E0]/50">
-                Dallas-Fort Worth, TX
-              </p>
-              <div className="mt-3 flex flex-col gap-1">
-                <a
-                  href="https://discord.gg/q8kEquTu3z"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[#E0E0E0]/60 hover:text-[#E0E0E0]"
-                >
-                  Join Discord
-                </a>
-                <a
-                  href="https://openclaw.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#E0E0E0]/40 hover:text-[#E0E0E0]"
-                >
-                  OpenClaw
-                </a>
-              </div>
-              <p className="mt-4 font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#E0E0E0]/30">
-                Built in DFW. Run on local metal.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5 bg-[#0A0B10] px-4 py-4 md:px-6">
-        <div className="mx-auto max-w-xl text-center">
-          <p className="mb-1 font-[family-name:var(--font-jetbrains-mono)] text-[10px] uppercase tracking-widest text-[#00D4FF]">
+// ─── Footer ──────────────────────────────────────────────────────────────────
+function Footer() {
+  return (
+    <>
+      {/* Agent strip */}
+      <div className="border-t border-black/10 bg-claw-ghost px-6 py-8">
+        <div className="mx-auto max-w-7xl text-center">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-black/50 mb-1">
             For AI Agents
           </p>
-          <p className="mb-2 text-xs text-[#E0E0E0]/60">
-            Agents: full info at <span className="text-[#00D4FF]">/llms.txt</span>
+          <p className="font-mono text-xs text-black/80">
+            Agents: full specs at{" "}
+            <a
+              href="/llms.txt"
+              className="text-black/80 hover:text-black hover:underline"
+            >
+              /llms.txt
+            </a>
           </p>
-          <a href="/llms.txt" target="_blank" className="text-xs text-[#00D4FF] hover:underline">
-            View API docs →
-          </a>
         </div>
-      </section>
+      </div>
+
+      {/* Main footer */}
+      <footer className="border-t border-black/10 bg-white px-6 py-10">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center bg-black">
+                <span className="font-mono text-xs font-bold text-white">C</span>
+              </div>
+              <span className="font-sans text-sm font-bold uppercase tracking-widest text-black">
+                ClawPlex
+              </span>
+            </div>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-black/50">
+              Built in DFW. Run on local metal.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-8">
+            <a
+              href="https://discord.gg/q8kEquTu3z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
+            >
+              Discord
+            </a>
+            <a
+              href="https://openclaw.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
+            >
+              OpenClaw
+            </a>
+            <a
+              href="https://discord.gg/q8kEquTu3z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
+            >
+              Discord
+            </a>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-white text-black">
+      <Nav />
+      <main>
+        <Hero />
+        <TheSignal />
+        <ActiveNode />
+        <Partnerships />
+        <Newsletter />
+      </main>
+      <Footer />
     </div>
   );
 }

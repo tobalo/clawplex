@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 
-const WEB3FORMS_URL = "https://api.web3forms.com/submit";
-const FALLBACK_ACCESS_KEY = "951a1825-4a6d-446b-a043-d2d633e03415";
+// In-memory store (ephemeral on serverless — cold starts reset this)
+// For persistent storage: use Vercel KV, Postgres, or an email service API.
+const subscribers = new Map<string, string>();
 
 function isValidEmail(email: unknown): email is string {
-  return typeof email === "string" && email.includes("@");
+  return typeof email === "string" && email.includes("@") && email.includes(".");
 }
 
 export async function POST(request: Request) {
@@ -13,36 +14,18 @@ export async function POST(request: Request) {
     const { email } = body;
 
     if (!isValidEmail(email)) {
-      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    const accessKey =
-      process.env.WEB3FORMS_ACCESS_KEY ??
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ??
-      FALLBACK_ACCESS_KEY;
-
-    const upstreamResponse = await fetch(WEB3FORMS_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        email,
-        subject: "New ClawPlex Newsletter Signup",
-      }),
-    });
-
-    const data = (await upstreamResponse.json()) as { success?: boolean; message?: string };
-
-    if (!upstreamResponse.ok || !data.success) {
-      return NextResponse.json(
-        { error: data.message ?? "Subscription failed" },
-        { status: 502 },
-      );
+    const normalized = email.toLowerCase().trim();
+    if (subscribers.has(normalized)) {
+      return NextResponse.json({ ok: true, message: "Already subscribed!" });
     }
 
-    return NextResponse.json({ ok: true, mode: "web3forms" });
+    subscribers.set(normalized, new Date().toISOString());
+    console.log(`[subscribe] ${email} subscribed (total: ${subscribers.size})`);
+
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Subscribe error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
