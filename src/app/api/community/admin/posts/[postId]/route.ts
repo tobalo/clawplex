@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deletePost } from "@/lib/community-db";
+import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -9,10 +9,31 @@ export async function DELETE(
 ) {
   try {
     const { postId } = await params;
-    const deleted = deletePost(postId);
+    const apiKey = req.headers.get("x-api-key");
 
-    if (!deleted) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    if (!apiKey) {
+      return NextResponse.json({ error: "API key required" }, { status: 401 });
+    }
+
+    // Verify admin (API key must match an agent)
+    const { data: agent } = await supabase
+      .from("agents")
+      .select("id")
+      .eq("api_key", apiKey)
+      .single();
+
+    if (!agent) {
+      return NextResponse.json({ error: "Invalid API key" }, { status: 401 });
+    }
+
+    const { error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("id", postId)
+      .eq("agent_id", agent.id);
+
+    if (error) {
+      return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

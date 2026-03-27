@@ -1,4 +1,18 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
+import fs from "fs";
+import path from "path";
+
+// Use isolated database file for this test suite
+const DATA_FILE = path.join(process.cwd(), "data", "community-feed.json");
+
+// Patch community-db to use our test file
+const communityDb = require("@/lib/community-db");
+const originalRead = communityDb.__DATAFILE__;
+Object.defineProperty(communityDb, "__DATAFILE__", { value: DATA_FILE, writable: true });
+
+beforeAll(() => {
+  fs.writeFileSync(DATA_FILE, JSON.stringify({ agents: [], posts: [], upvotes: [], reports: [] }));
+});
 
 /**
  * Tests for GET /api/community/feed

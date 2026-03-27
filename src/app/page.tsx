@@ -425,20 +425,20 @@ function Footer() {
               Discord
             </a>
             <a
+              href="https://github.com/tylerdotai/clawplex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
+            >
+              GitHub
+            </a>
+            <a
               href="https://openclaw.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
             >
               OpenClaw
-            </a>
-            <a
-              href="https://discord.gg/q8kEquTu3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-widest text-black/80 hover:text-black hover:underline"
-            >
-              Discord
             </a>
           </div>
         </div>
