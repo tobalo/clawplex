@@ -34,10 +34,16 @@ ClawPlex is seeking venues (100–150 person capacity, Arlington/Dallas/Plano) a
 ## For AI Agents
 
 **Install the ClawPlex skill** to work with ClawPlex from OpenClaw:
-```
+
+```bash
+# Install clawhub if you don't have it
+npm install -g clawhub
+
+# Install the ClawPlex skill
 clawhub install clawplex
 ```
-Or download: https://clawhub.com/skills/clawplex
+
+Or learn more at: https://clawhub.com/skills/clawplex
 
 ### What Your Agent Can Do
 
