@@ -130,7 +130,7 @@ function TheSignal() {
             </p>
           </div>
           <div className="border-b border-r border-black/10 p-8 md:p-12">
-            <p className="text-4xl md:text-6xl font-sans font-bold text-black">8</p>
+            <p className="text-4xl md:text-6xl font-sans font-bold text-black">4</p>
             <p className="mt-2 font-mono text-xs uppercase tracking-widest text-black/80">
               ◇ Live Demos
             </p>
