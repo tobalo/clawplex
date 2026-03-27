@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete History of Artificial Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-card-hover: #22222f;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --accent: #6c5ce7;
+            --accent-glow: rgba(108, 92, 231, 0.3);
+            --accent-secondary: #00cec9;
+            --border: rgba(255, 255, 255, 0.08);
+            --era-1940s: #e17055;
+            --era-1960s: #fdcb6e;
+            --era-1970s: #74b9ff;
+            --era-1990s: #55efc4;
+            --era-2000s: #a29bfe;
+            --era-2010s: #fd79a8;
+            --era-2020s: #00b894;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 40px 0;
+        }
+
+        .toc h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        .toc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Era Badge */
+        .era-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-header .section-intro {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 .year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .card .description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .card .source {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .card .source a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .card .source a:hover {
+            color: var(--accent);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--era-1940s), var(--era-1960s), var(--era-1970s), var(--era-1990s), var(--era-2000s), var(--era-2010s), var(--era-2020s));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            z-index: 1;
+        }
+
+        .timeline-item .year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item .event {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Key Figures Grid */
+        .figures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .figure-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .figure-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .figure-card .name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .figure-card .years {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .figure-card .role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Institutions Grid */
+        .institutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .institution-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .institution-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .institution-card .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .institution-card .type {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Milestone Table */
+        .milestone-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .milestone-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .milestone-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .milestone-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .milestone-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .milestone-table .year-cell {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .milestone-table .era-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Quote block */
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding: 16px 24px;
+            margin: 20px 0;
+            background: rgba(108, 92, 231, 0.05);
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .quote-block .attribution {
+            margin-top: 8px;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Intro section */
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .scroll-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .scroll-top:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 0 16px; }
+            .toc { padding: 20px; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .hero { padding: 50px 0 40px; }
+            .card { padding: 18px 20px; }
+            .figures-grid { grid-template-columns: 1fr; }
+            .institutions-grid { grid-template-columns: 1fr; }
+            .milestone-table { font-size: 0.8rem; }
+            .milestone-table th, .milestone-table td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero -->
+    <header class="hero">
+        <h1>The Complete History of<br>Artificial Intelligence</h1>
+        <p class="subtitle">From the first artificial neuron in 1943 to the age of large language models and multimodal AI — a comprehensive chronicle of the field that reshaped civilization.</p>
+        <div class="hero-meta">
+            <span>&#128218; 80+ years of research</span>
+            <span>&#128100; 20+ key figures</span>
+            <span>&#127757; Global institutions</span>
+            <span>&#128197; Last updated: March 2026</span>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="toc">
+        <h2>Table of Contents</h2>
+        <div class="toc-grid">
+            <a href="#era-1940s"><span class="toc-dot" style="background:var(--era-1940s)"></span>1940s–1950s: The Beginning</a>
+            <a href="#era-1960s"><span class="toc-dot" style="background:var(--era-1960s)"></span>1960s: Early Optimism</a>
+            <a href="#era-1970s"><span class="toc-dot" style="background:var(--era-1970s)"></span>1970s–1980s: AI Winter</a>
+            <a href="#era-1990s"><span class="toc-dot" style="background:var(--era-1990s)"></span>1990s: Rebirth</a>
+            <a href="#era-2000s"><span class="toc-dot" style="background:var(--era-2000s)"></span>2000s: Deep Learning Era</a>
+            <a href="#era-2010s"><span class="toc-dot" style="background:var(--era-2010s)"></span>2010s: Transformer Revolution</a>
+            <a href="#era-2020s"><span class="toc-dot" style="background:var(--era-2020s)"></span>2020s: Current State</a>
+            <a href="#key-figures"><span class="toc-dot" style="background:#a0a0b0"></span>Key Figures</a>
+            <a href="#institutions"><span class="toc-dot" style="background:#a0a0b0"></span>Key Institutions</a>
+            <a href="#timeline"><span class="toc-dot" style="background:#a0a0b0"></span>Full Timeline</a>
+        </div>
+    </nav>
+
+    <!-- ===================== -->
+    <!-- 1940s-1950s: The Beginning -->
+    <!-- ===================== -->
+    <section class="section" id="era-1940s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">
+                <span>&#9679;</span> 1943 – 1959
+            </div>
+            <h2>The Beginning</h2>
+            <p class="section-intro">Laying the theoretical groundwork for artificial minds, one neuron at a time.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1943</span> McCulloch & Pitts Neuron</h3>
+            <p class="description">Warren McCulloch (a neurophysiologist) and Walter Pitts (a logician) published "A Logical Calculus of the Ideas Immanent in Nervous Activity" in the Bulletin of Mathematical Biophysics. They proposed the first mathematical model of an artificial neuron — a binary threshold device that could compute logical functions. This seminal paper established that networks of such neurons could, in principle, compute any arithmetic or logical operation, providing the theoretical foundation for neural networks. It was the first formal attempt to understand how the brain might process information computationally.</p>
+            <span class="source">Source: McCulloch, W.S. & Pitts, W. (1943). "A Logical Calculus of the Ideas Immanent in Nervous Activity." <em>Bulletin of Mathematical Biophysics</em>, 5, 115–133. <a href="https://doi.org/10.1007/BF02478259" target="_blank">doi:10.1007/BF02478259</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1949</span> Hebbian Learning</h3>
+            <p class="description">Donald Hebb published The Organization of Behavior, introducing the Hebbian learning rule — "neurons that fire together, wire together." This principle described how synaptic connections between neurons strengthen when they are simultaneously active, providing a foundational mechanism for learning and memory in biological neural networks. The Hebbian rule became a cornerstone concept for training artificial neural networks decades later.</p>
+            <span class="source">Source: Hebb, D.O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. Wiley.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1950</span> Turing's "Computing Machinery and Intelligence"</h3>
+            <p class="description">Alan Turing published his landmark paper introducing what became known as the Turing Test — the famous "imitation game." Rather than asking "can machines think?", Turing proposed an operational test: a human evaluator would converse with a machine and a human via text, and if the evaluator could not reliably distinguish the machine, the machine would be said to have demonstrated intelligence. This paper defined the central question of AI for decades and remains influential today.</p>
+            <div class="quote-block">
+                "I believe that in about fifty years' time it will be possible to program computers [...] to make them play the imitation game so well that an average interrogator will not have more than 70% chance of making the correct identification after five minutes of questioning."
+                <div class="attribution">— Alan Turing, 1950</div>
+            </div>
+            <span class="source">Source: Turing, A.M. (1950). "Computing Machinery and Intelligence." <em>Mind</em>, 59(236), 433–460. <a href="https://www.jstor.org/stable/2251299" target="_blank">jstor.org/stable/2251299</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1956</span> The Dartmouth Conference</h3>
+            <p class="description">The Dartmouth Summer Research Project on Artificial Intelligence brought together John McCarthy, Marvin Minsky, Claude Shannon, and Nathaniel Rochester, among others, for what is considered the birth of AI as a field. McCarthy coined the term "Artificial Intelligence" for the proposal. The conference's ambitious goal: "to find how to make machines use language, form abstractions and concepts, solve kinds of problems now reserved for humans, and improve themselves." Though the conference's predictions proved overly optimistic, it established AI as an independent discipline and sparked a decade of intense research.</p>
+            <span class="source">Source: McCarthy, J., Minsky, M., Rochester, N., & Shannon, C.E. (1955). "A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence." <a href="http://www-formal.stanford.edu/jmc/history/dartmouth/dartmouth.html" target="_blank">stanford.edu/jmc/history/dartmouth</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1956–1959</span> Logic Theorist & General Problem Solver</h3>
+            <p class="description">Allen Newell, Herbert Simon, and Clifford Shaw built the Logic Theorist, the first AI program, which proved mathematical theorems from Principia Mathematica. It was followed by the General Problem Solver (GPS), designed to mimic human problem-solving methods. These programs demonstrated that machines could perform symbolic reasoning — a paradigm that would dominate AI for decades. Herbert Simon famously predicted in 1957 that a computer would defeat the world chess champion within ten years (a prediction that took 40 years to fulfill).</p>
+            <span class="source">Source: Newell, A., Shaw, J.C., & Simon, H.A. (1957). "Empirical Explorations with the Logic Theory Machine." <em>Western Joint Computer Conference</em>. <a href="https://、退" target="_blank"></a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 1960s: Early Optimism -->
+    <!-- ===================== -->
+    <section class="section" id="era-1960s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(253,203,110,0.15);color:var(--era-1960s)">
+                <span>&#9679;</span> 1960 – 1969
+            </div>
+            <h2>Early Optimism</h2>
+            <p class="section-intro">The golden age of AI — governments poured money in, and researchers believed human-level AI was a decade away.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1960</span> Frank Rosenblatt & the Perceptron</h3>
+            <p class="description">Frank Rosenblatt at Cornell developed the Mark I Perceptron, the first functioning hardware implementation of a neural network. Based on the McCulloch-Pitts neuron but with a learning rule that adjusted connection weights, the perceptron could learn to classify patterns. Rosenblatt's work generated enormous excitement and funding, though it was later shown (by Minsky and Papert in 1969) to have fundamental limitations — it could not learn the XOR function, a problem that would only be solved with multi-layer networks.</p>
+            <span class="source">Source: Rosenblatt, F. (1958). "The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain." <em>Psychological Review</em>, 65(6), 386–408. <a href="https://psycnet.apa.org/doi/10.1037/h0042519" target="_blank">doi:10.1037/h0042519</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1964</span> ELIZA — The First Chatbot</h3>
+            <p class="description">Joseph Weizenbaum at MIT built ELIZA, an early natural language processing program that could simulate conversation by pattern matching and substitution. The most famous script, DOCTOR, parodied a Rogerian psychotherapist and fooled some users into believing they were talking to a human. ELIZA was a proof-of-concept demonstrating that human-computer conversation was possible, and it remains one of the most referenced early AI programs. Weizenbaum was later troubled by how seriously people took the program.</p>
+            <span class="source">Source: Weizenbaum, J. (1966). "ELIZA — A Computer Program for the Study of Natural Language Communication Between Man and Machine." <em>Communications of the ACM</em>, 9(1), 36–45. <a href="https://doi.org/10.1145/365153.365168" target="_blank">doi:10.1145/365153.365168</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1966</span> Shakey the Robot</h3>
+            <p class="description">Developed at SRI International, Shakey was the first general-purpose mobile robot capable of reasoning about its own actions. It combined perception (via TV camera and range finder), world modeling, and planning — groundbreaking at the time. Shakey famously reasoned about which boxes to push to reach high shelves, breaking problems into smaller tasks. It gave rise to the " Situated AI" paradigm and influenced decades of robotics research.</p>
+            <span class="source">Source: Nilsson, N. (1984). "Shakey the Robot." SRI International AI Center, Technical Note 323. <a href="https://www.ai.sri.com/shakey/" target="_blank">ai.sri.com/shakey</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1967–1969</span> Dendral & Expert Systems Pioneers</h3>
+            <p class="description">Edward Feigenbaum, Joshua Lederberg, and Carl Djerassi at Stanford built DENDRAL (1965–1967), the first expert system, which inferred molecular structure from mass spectrometry data. This proved that AI could encode and apply expert domain knowledge. Feigenbaum later coined the term "knowledge engineering" and built MYCIN (1972–1976), an expert system for medical diagnosis that achieved expert-level performance in recommending antibiotic treatments, demonstrating the commercial potential of expert systems.</p>
+            <span class="source">Source: Buchanan, B.G. & Feigenbaum, E.A. (1978). "Dendral and Meta-Dendral: Their Applications Dimension." <em>Artificial Intelligence</em>, 11(1–2), 5–24.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1967</span> Micro-Worlds & AI Funding</h3>
+            <p class="description">Marvin Minsky and Seymour Papert published Perceptrons (1969), a mathematical analysis that exposed the fundamental limitations of single-layer neural networks (the XOR problem). While mathematically rigorous, the book's pessimistic conclusions led to a dramatic reduction in neural network funding — the so-called "first AI winter" began shortly after. Meanwhile, ARPA (Advanced Research Projects Agency, now DARPA) poured millions into AI research through institutions like MIT's AI Lab and Stanford's SAIL, fueling rapid progress in symbolic AI methods.</p>
+            <span class="source">Source: Minsky, M. & Papert, S. (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. MIT Press.</span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 1970s-1980s: AI Winter -->
+    <!-- ===================== -->
+    <section class="section" id="era-1970s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">
+                <span>&#9679;</span> 1970 – 1989
+            </div>
+            <h2>The AI Winter</h2>
+            <p class="section-intro">Funding collapsed, enthusiasm crashed, and the field retreated to rebuild on stronger foundations.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1971–1974</span> The First AI Winter</h3>
+            <p class="description">Following the Minsky & Papert critique of perceptrons and the Lighthill Report (1973) commissioned by the UK government, AI funding dried up dramatically. The combination of early AI's overpromising, computational limitations (AI programs ran thousands of times slower than anticipated), and the failure to achieve any of the grand goals (machine translation, general reasoning, etc.) led to the first major bust cycle. Several AI labs were shut down, and AI research went underground in academic departments.</p>
+            <span class="source">Source: Lighthill, J. (1973). "Artificial Intelligence: A General Survey." UK Science Research Council. <a href="https://www.britac.ac.uk/politics/AI.htm" target="_blank">britac.ac.uk/politics/AI.htm</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1975–1980</span> Expert Systems Rise</h3>
+            <p class="description">From the ashes of early neural network research, expert systems emerged as the dominant AI paradigm. MYCIN (Stanford, 1972–1976) demonstrated rule-based medical diagnosis. R1/XCON (Digital Equipment Corporation, 1978) became the first commercially successful expert system, automatically configuring computer orders and saving DEC an estimated $40 million annually by 1986. This sparked a wave of corporate AI investment and a brief revival of enthusiasm.</p>
+            <span class="source">Source: McDermott, J. (1982). "R1: A Rule-Based Configurer of Computer Systems." <em>Artificial Intelligence</em>, 19(1), 39–88. <a href="https://sci-hub.se/10.1016/0004-3702(82)90056-2" target="_blank">doi:10.1016/0004-3702(82)90056-2</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1981</span> Japan's Fifth Generation Computer</h3>
+            <p class="description">Japan's Ministry of International Trade and Industry (MITI) launched the Fifth Generation Computer Project (FGCS), a ten-year plan to build a computer system capable of human-level reasoning, natural language processing, and knowledge representation using Prolog. The project alarmed Western governments — the US responded with DARPA's Strategic Computing Initiative, and the UK restarted its Alvey Programme. This period saw a massive injection of funding that revived AI research across the globe.</p>
+            <span class="source">Source: Moto-Oka, T. (1982). "Fifth Generation Computer: The Challenge to the West." <em>IEEE Spectrum</em>, 19(11), 40–45.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1984–1987</span> The Second AI Winter</h3>
+            <p class="description">Expert systems, despite initial success, failed to scale. They were brittle (couldn't handle cases outside their rules), expensive to maintain, and required human experts to continuously update knowledge bases. The collapse of the Lisp machine market (specialized hardware for running Lisp programs) in 1987, combined with the end of the Reagan-era defense spending boom, triggered a second AI winter. Many AI companies went bankrupt; AI research budgets were slashed by 30–70% across academia and industry.</p>
+            <span class="source">Source: Dreyfuss, S.E. (1995). "What Artificial Intelligence Experts Get Wrong About Human Cognition." <em>AI Magazine</em>, 16(4), 11–19.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1986</span> Backpropagation & Connectionist Revival</h3>
+            <p class="description">Rumelhart, Hinton, and Williams published the definitive paper on backpropagation — the algorithm for training multi-layer neural networks that could overcome the perceptron's limitations. The key insight: errors could be propagated backward through the network to adjust weights layer by layer, enabling networks to learn non-linear functions like XOR. This paper effectively ended the "neural networks are dead" narrative and launched the connectionist revolution that would eventually become deep learning.</p>
+            <span class="source">Source: Rumelhart, D.E., Hinton, G.E., & Williams, R.J. (1986). "Learning Representations by Back-Propagating Errors." <em>Nature</em>, 323, 533–536. <a href="https://www.nature.com/articles/323533a0" target="_blank">doi:10.1038/323533a0</a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 1990s: Rebirth -->
+    <!-- ===================== -->
+    <section class="section" id="era-1990s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(85,239,196,0.15);color:var(--era-1990s)">
+                <span>&#9679;</span> 1990 – 1999
+            </div>
+            <h2>The Rebirth</h2>
+            <p class="section-intro">AI matured and industrialized — statistical methods replaced brittle rule systems, and the first real AI products reached the public.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1991</span> The Web Goes Live</h3>
+            <p class="description">Tim Berners-Lee's World Wide Web, made public in 1991, would become the most important data source in AI history. Within a decade, the internet would generate the massive datasets necessary to train modern machine learning systems. Information retrieval, search engines, and web scraping emerged as AI-adjacent fields that would converge dramatically with machine learning in the 2000s.</p>
+            <span class="source">Source: Berners-Lee, T. & Fischetti, M. (1999). <em>Weaving the Web: The Original Design and Ultimate Destiny of the World Wide Web</em>. Harper Business.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1994</span> Statistical Methods Dominate</h3>
+            <p class="description">A quiet revolution occurred: statistical learning began replacing symbolic AI as the dominant paradigm. Rather than hand-coded rules, researchers turned to probabilistic models, Hidden Markov Models (HMMs) for speech recognition, and Bayesian networks for reasoning under uncertainty. This shift was driven by the availability of larger datasets and more computational power — and it produced far more robust, scalable systems. IBM's Sphinx system (1989) and CMU's Sphinx-2 demonstrated that statistical speech recognition vastly outperformed earlier rule-based approaches.</p>
+            <span class="source">Source: Charniak, E. (1993). <em>Statistical Language Learning</em>. MIT Press.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1997</span> Deep Blue Defeats Kasparov</h3>
+            <p class="description">IBM's Deep Blue defeated world chess champion Garry Kasparov in a six-game match (3.5–2.5). While Deep Blue relied primarily on brute-force search with massive parallel processing (30 RS/6000 CPUs evaluating 200 million positions per second) rather than "intelligence" in the human sense, the victory was symbolically enormous — demonstrating that computers could surpass human champions in traditionally "intelligent" domains. The rematch in 1997 was the definitive moment, watched by hundreds of millions worldwide.</p>
+            <span class="source">Source: Hsu, F.-h. (2002). <em>Behind Deep Blue: Building the Computer That Defeated the World Chess Champion</em>. Princeton University Press.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">1998</span> LeCun's Convolutional Networks</h3>
+            <p class="description">Yann LeCun published his landmark paper on convolutional neural networks (CNNs) for handwritten digit recognition (LeNet-5), demonstrating that neural networks could achieve state-of-the-art accuracy on real-world vision tasks using local receptive fields, weight sharing, and pooling. The system was deployed by banks and postal services to read handwritten digits on checks and zip codes. CNNs would become the foundation of modern computer vision and would power the deep learning revolution a decade later.</p>
+            <span class="source">Source: LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). "Gradient-Based Learning Applied to Document Recognition." <em>Proceedings of the IEEE</em>, 86(11), 2278–2324. <a href="https://doi.org/10.1109/5.726791" target="_blank">doi:10.1109/5.726791</a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 2000s: Deep Learning Era -->
+    <!-- ===================== -->
+    <section class="section" id="era-2000s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">
+                <span>&#9679;</span> 2000 – 2009
+            </div>
+            <h2>The Deep Learning Era</h2>
+            <p class="section-intro">Faster GPUs, bigger datasets, and smarter architectures unlocked neural networks that actually worked at scale.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2006</span> Deep Belief Networks — The Deep Learning Awakening</h3>
+            <p class="description">Geoffrey Hinton published three groundbreaking papers introducing deep belief networks (DBNs) and the concept of "deep learning." The key breakthrough was greedy layer-wise pretraining — training each layer of a deep network as an unsupervised model before fine-tuning with supervision, avoiding the vanishing gradient problem that had plagued earlier deep networks. Hinton demonstrated that neural networks with many layers could finally be trained effectively. This sparked an international race to scale up deep learning.</p>
+            <span class="source">Source: Hinton, G.E., Osindero, S., & Teh, Y.W. (2006). "A Fast Learning Algorithm for Deep Belief Nets." <em>Neural Computation</em>, 18(7), 1527–1554. <a href="https://www.cs.toronto.edu/~hinton/absps/fastnc.pdf" target="_blank">cs.toronto.edu/~hinton/absps/fastnc.pdf</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2008</span> Andrew Ng & Large-Scale Deep Learning</h3>
+            <p class="description">Andrew Ng joined Google's Stanford AI Lab and began work on scaling deep learning to massive datasets. His group demonstrated that deep neural networks trained on thousands of hours of speech could dramatically outperform previous speech recognition systems. This work laid the foundation for Google's voice recognition products and showed that the combination of big data, GPU computing, and deep architectures was a winning formula.</p>
+            <span class="source">Source: Ng, A. et al. (2011). "Deep Learning of Representations for Unsupervised and Transfer Learning." <em>ICML Workshop on Unsupervised and Transfer Learning</em>.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2009</span> ImageNet & The Dataset That Changed Everything</h3>
+            <p class="description">Fei-Fei Li launched ImageNet, a dataset of 14 million labeled images across 20,000 categories, designed to evaluate the scale of visual object recognition algorithms. The annual ImageNet Large Scale Visual Recognition Challenge (ILSVRC) became the benchmark that would drive computer vision research for the next decade. It was the first dataset large enough to truly test whether deep neural networks could scale — and they did, spectacularly.</p>
+            <span class="source">Source: Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., & Fei-Fei, L. (2009). "ImageNet: A Large-Scale Hierarchical Image Database." <em>CVPR</em>. <a href="https://www.image-net.org/" target="_blank">image-net.org</a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 2010s: Transformer Revolution -->
+    <!-- ===================== -->
+    <section class="section" id="era-2010s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">
+                <span>&#9679;</span> 2010 – 2019
+            </div>
+            <h2>The Transformer Revolution</h2>
+            <p class="section-intro">A paper from Google Brain changed everything — attention mechanisms replaced recurrence, and language would never be the same.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2011</span> IBM Watson Wins Jeopardy!</h3>
+            <p class="description">IBM Watson defeated two Jeopardy! champions — Ken Jennings and Brad Rutter — in a televised three-day match. Watson processed natural language questions across vast knowledge bases, using hundreds of parallel algorithms to generate and score candidate answers in seconds. The achievement demonstrated that deep QA (question answering) systems could understand and reason over human language at superhuman speed, spawning commercial applications in healthcare, legal, and customer service.</p>
+            <span class="source">Source: Ferrucci, D. et al. (2010). "Building Watson: An Overview of the DeepQA Project." <em>AI Magazine</em>, 31(3), 59–79. <a href="https://www.aaai.org/ojs/index.php/oaimagazine/article/view/2300" target="_blank">aaai.org/ojs/index.php/oaimagazine</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2012</span> AlexNet & The GPU Revolution</h3>
+            <p class="description">Geoffrey Hinton's student Alex Krizhevsky submitted AlexNet to the ImageNet competition, achieving a top-5 error rate of 15.3% — more than 10 percentage points better than the runner-up at 26.2%. This was the watershed moment for deep learning. AlexNet used eight layers of CNNs, trained on two NVIDIA GTX 580 GPUs, and showed that GPU-accelerated deep convolutional networks could crush all other approaches. The field pivoted to deep learning virtually overnight. Key techniques: ReLU activations, dropout regularization, data augmentation, and GPU parallelism.</p>
+            <span class="source">Source: Krizhevsky, A., Sutskever, I., & Hinton, G.E. (2012). "ImageNet Classification with Deep Convolutional Neural Networks." <em>NeurIPS</em>. <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks" target="_blank">papers.neurips.cc/paper/4824</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2014</span> GANs & Generative AI Begins</h3>
+            <p class="description">Ian Goodfellow introduced Generative Adversarial Networks (GANs) — a framework where two neural networks (a generator and discriminator) compete against each other, with the generator creating increasingly realistic synthetic data to fool the discriminator. GANs sparked a revolution in generative AI, enabling the creation of photorealistic images, video synthesis, and artistic style transfer. Goodfellow's paper was among the most cited in AI history.</p>
+            <span class="source">Source: Goodfellow, I. et al. (2014). "Generative Adversarial Networks." <em>NeurIPS</em>. <a href="https://papers.neurips.cc/paper/5423-generative-adversarial-networks" target="_blank">papers.neurips.cc/paper/5423</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2016</span> AlphaGo Defeats Lee Sedol</h3>
+            <p class="description">Google DeepMind's AlphaGo defeated Lee Sedol, one of the world's top Go players, 4–1 in a widely publicized match in Seoul. Go's search space is incomparably larger than chess, making brute-force approaches impossible. AlphaGo combined deep neural networks with Monte Carlo tree search, using reinforcement learning to train from millions of human games and then playing millions more against itself. The victory was considered impossible by most AI researchers just five years earlier. A subsequent version, AlphaGo Zero (2017), learned entirely from self-play and surpassed all previous versions.</p>
+            <span class="source">Source: Silver, D. et al. (2016). "Mastering the Game of Go with Deep Neural Networks and Tree Search." <em>Nature</em>, 529, 484–489. <a href="https://www.nature.com/articles/nature16961" target="_blank">doi:10.1038/nature16961</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2017</span> "Attention Is All You Need"</h3>
+            <p class="description">Ashish Vaswani and colleagues at Google Brain published "Attention Is All You Need," introducing the Transformer architecture. By discarding recurrence entirely and relying solely on self-attention mechanisms, Transformers achieved massive parallelization during training and captured long-range dependencies far more effectively than RNNs or LSTMs. The Transformer became the dominant architecture for all of NLP and eventually computer vision, speech, and multimodal AI. It is arguably the most influential AI paper ever published.</p>
+            <span class="source">Source: Vaswani, A. et al. (2017). "Attention Is All You Need." <em>NeurIPS</em>. <a href="https://arxiv.org/abs/1706.03762" target="_blank">arXiv:1706.03762</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2018</span> BERT & GPT-1</h3>
+            <p class="description">Google published BERT (Bidirectional Encoder Representations from Transformers), which achieved state-of-the-art results on 11 NLP benchmarks by using bidirectional attention and pre-training on a massive corpus, then fine-tuning for specific tasks. Simultaneously, OpenAI published the first Generative Pre-trained Transformer (GPT-1). These papers established the foundation model paradigm: train a massive neural network on diverse text once, then fine-tune it for many different tasks — a revolutionary shift from task-specific models.</p>
+            <span class="source">Source: Devlin, J. et al. (2018). "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding." <em>NAACL</em>. <a href="https://arxiv.org/abs/1810.04805" target="_blank">arXiv:1810.04805</a> | Radford, A. et al. (2018). "Improving Language Understanding by Generative Pre-Training." OpenAI.</span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2019</span> GPT-2 — The Dangerous Demo</h3>
+            <p class="description">OpenAI released GPT-2, a 1.5-billion-parameter language model that could generate remarkably coherent, multi-paragraph text. The model was so capable that OpenAI initially declined to release the full model, citing "concerns about malicious applications" — a first for the AI research community. GPT-2 could write news articles, fiction, and technical documentation that was often indistinguishable from human writing. It demonstrated that scale was a critical ingredient in emergent capabilities.</p>
+            <span class="source">Source: Radford, A. et al. (2019). "Language Models are Unsupervised Multitask Learners." OpenAI Technical Report. <a href="https://openai.com/index/better-language-models/" target="_blank">openai.com/index/better-language-models</a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 2020s: Current State -->
+    <!-- ===================== -->
+    <section class="section" id="era-2020s">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">
+                <span>&#9679;</span> 2020 – Present
+            </div>
+            <h2>The Current State of AI</h2>
+            <p class="section-intro">Foundation models, multimodal AI, and the race to build artificial general intelligence — with all its promise and peril.</p>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2020</span> GPT-3 — 175 Billion Parameters</h3>
+            <p class="description">OpenAI released GPT-3 with 175 billion parameters — 100x larger than GPT-2 — trained on 300 billion tokens of text. GPT-3 demonstrated that language models at sufficient scale exhibit emergent few-shot and zero-shot capabilities: they could solve new tasks without task-specific training, simply from instructions or examples in the prompt. It sparked the foundation model arms race and showed that scale alone unlocked surprising capabilities, including basic reasoning, code generation, and creative writing.</p>
+            <span class="source">Source: Brown, T.B. et al. (2020). "Language Models are Few-Shot Learners." <em>NeurIPS</em>. <a href="https://arxiv.org/abs/2005.14165" target="_blank">arXiv:2005.14165</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2021</span> DALL-E, CLIP & Foundation Models Proliferate</h3>
+            <p class="description">OpenAI released DALL-E, a 12-billion-parameter model that generated images from text descriptions with startling creativity and accuracy. CLIP, released simultaneously, learned to connect images and text via contrastive learning on 400 million image-text pairs from the internet. These models demonstrated that the transformer paradigm extended naturally beyond text — to images, audio, and multimodal understanding. The diffusion model (pioneered by Ho et al., 2020) emerged as the dominant image generation architecture, powering Stable Diffusion (2022).</p>
+            <span class="source">Source: Rombach, R. et al. (2022). "High-Resolution Image Synthesis with Latent Diffusion Models." <em>CVPR</em>. <a href="https://arxiv.org/abs/2112.10752" target="_blank">arXiv:2112.10752</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2022</span> ChatGPT Launches</h3>
+            <p class="description">OpenAI launched ChatGPT on November 30, 2022, making large language model conversation accessible to the general public. Built on GPT-3.5, it achieved 1 million users in 5 days and 100 million in two months — the fastest consumer product adoption in history. ChatGPT demonstrated that conversational AI could be genuinely useful for real-world tasks: writing, coding, analysis, education, and entertainment. It sparked a global AI arms race and forced every major technology company to accelerate their LLM programs.</p>
+            <span class="source">Source: OpenAI (2022). "ChatGPT: Optimizing Language Models for Dialogue." <a href="https://openai.com/index/chatgpt/" target="_blank">openai.com/index/chatgpt</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2023</span> GPT-4, Claude, Gemini & the LLM Race</h3>
+            <p class="description">GPT-4 (OpenAI, March 2023) was the first multimodal frontier model, accepting both text and image inputs and achieving human-level performance on the bar exam (90th percentile) and GRE. Anthropic's Claude 2 (July 2023) emphasized constitutional AI and safety. Google released Bard (later upgraded to Gemini, December 2023), a multimodal model directly integrated into Google's products. Meta open-sourced Llama 2 (July 2023), making powerful models available to the research community and triggering an open-source AI ecosystem explosion.</p>
+            <span class="source">Source: OpenAI (2023). "GPT-4 Technical Report." <a href="https://arxiv.org/abs/2303.08774" target="_blank">arXiv:2303.08774</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2023–2024</span> AI Agents & Reasoning</h3>
+            <p class="description">The field shifted toward AI agents — systems that can plan, use tools, execute multi-step tasks, browse the web, write and run code, and interact with APIs autonomously. OpenAI's GPTs and Assistants API, Anthropic's Claude with tool use, and research on ReAct (reasoning + acting), chain-of-thought prompting, and retrieval-augmented generation (RAG) enabled a new paradigm. AutoGPT, BabyAGI, and similar projects demonstrated the concept of AI agents that pursue goals across multiple steps. Meanwhile, chain-of-thought and constitutional AI techniques improved reasoning reliability.</p>
+            <span class="source">Source: Wei, J. et al. (2022). "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models." <em>NeurIPS</em>. <a href="https://arxiv.org/abs/2201.11903" target="_blank">arXiv:2201.11903</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2024–2025</span> Reasoning Models, Multimodal & Real-World Robotics</h3>
+            <p class="description">OpenAI o1 and o3 (2024) introduced inference-time compute scaling — models that "think" during inference, spending more computation on reasoning steps before responding, achieving near-human performance on math olympiad and PhD-level science problems. Google's Gemini 2.0, Anthropic Claude 3.5 and 4, xAI Grok, and Meta's Llama 3 series advanced multimodal understanding (video, audio, 3D). Physical AI advanced with Figure 01 robot (OpenAI-backed), Tesla Optimus, and Boston Dynamics' Atlas. AI-powered scientific discovery accelerated in drug design, materials science, and climate modeling.</p>
+            <span class="source">Source: OpenAI (2024). "Learning to Reason with LLMs." <a href="https://openai.com/index/openai-o1/" target="_blank">openai.com/index/openai-o1</a></span>
+        </div>
+
+        <div class="card">
+            <h3><span class="year">2025</span> AI Ethics, Governance & the Frontier Debate</h3>
+            <p class="description">AI safety research became a mainstream concern as frontier models grew more capable. The EU AI Act (2024) became the world's first comprehensive AI regulation. The "superhuman AI" debate intensified: leading researchers (Demis Hassabis, Sam Altman, Dario Amodei) increasingly spoke about artificial general intelligence (AGI) timelines in years rather than decades. Anthropic's Claude 4, OpenAI's GPT-5, and Google's Gemini Ultra 2 pushed benchmarks. Simultaneously, debates over AI bias, deepfakes, copyright, labor displacement, and existential risk dominated policy discussions globally.</p>
+            <span class="source">Source: Anthropic (2024). "Model Card and System Card for Claude 4." <a href="https://www.anthropic.com/claude" target="_blank">anthropic.com/claude</a> | European Commission (2024). "EU AI Act." <a href="https://eur-lex.europa.eu/eli/reg/2024/1689" target="_blank">eur-lex.europa.eu</a></span>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- Key Figures -->
+    <!-- ===================== -->
+    <section class="section" id="key-figures">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(160,160,176,0.15);color:#a0a0b0">
+                <span>&#9679;</span> Key Figures
+            </div>
+            <h2>Pioneers & Visionaries</h2>
+            <p class="section-intro">The people who built the field, one idea at a time.</p>
+        </div>
+
+        <div class="figures-grid">
+            <div class="figure-card">
+                <div class="name">Warren McCulloch</div>
+                <div class="years">1898–1969</div>
+                <div class="role">Neurophysiologist who co-created the first mathematical model of the artificial neuron (1943), establishing the theoretical basis for neural networks.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Walter Pitts</div>
+                <div class="years">1923–1969</div>
+                <div class="role">Logician who collaborated with McCulloch to create the McCulloch-Pitts neuron model. Self-taught prodigy who worked at MIT from age 15.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Alan Turing</div>
+                <div class="years">1912–1954</div>
+                <div class="role">Mathematician who proposed the Turing Test (1950), defined the foundational question of AI, and built the Bombshell codebreaking machine during WWII.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">John McCarthy</div>
+                <div class="years">1927–2011</div>
+                <div class="role">Coined the term "Artificial Intelligence" at the 1956 Dartmouth Conference. Invented Lisp, the first major AI programming language. Founder of AI as a discipline.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Marvin Minsky</div>
+                <div class="years">1927–2016</div>
+                <div class="role">MIT AI Lab co-founder. Pioneered computational geometry, the Perceptron critique that triggered the first AI winter, and later, the Society of Mind theory of cognition.</div>
+            </div>
+            <div class="figure-card">
+                <div name">Geoffrey Hinton</div>
+                <div class="years">1947–</div>
+                <div class="role">"Godfather of Deep Learning." Invented backpropagation (independently), deep belief networks, and Boltzmann machines. Won the 2024 Nobel Prize in Physics for his work on artificial neural networks.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Yann LeCun</div>
+                <div class="years">1960–</div>
+                <div class="role">Pioneered convolutional neural networks (LeNet, 1998) for computer vision. Chief AI Scientist at Meta. Co-winner of the 2018 Turing Award with Hinton and Bengio.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Yoshua Bengio</div>
+                <div class="years">1964–</div>
+                <div class="role">Co-winner of the 2018 Turing Award. Pioneered attention mechanisms, deep learning for NLP, and generative adversarial networks. Co-founder of Element AI.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Ashish Vaswani</div>
+                <div class="years">1977–</div>
+                <div class="role">Lead author of "Attention Is All You Need" (2017), the Transformer paper that revolutionized NLP and became the foundation of modern AI.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Demis Hassabis</div>
+                <div class="years">1976–</div>
+                <div class="role">Neuroscientist and chess prodigy who co-founded DeepMind (2010). Led the development of AlphaGo, AlphaFold (protein structure prediction), and AlphaCode.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Sam Altman</div>
+                <div class="years">1985–</div>
+                <div class="role">CEO of OpenAI (2019–present), driving the development of GPT-2/3/4, ChatGPT, and the foundation model paradigm. Became a central figure in the global AI policy debate.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Fei-Fei Li</div>
+                <div class="years">1976–</div>
+                <div class="role">Created ImageNet (2009), the dataset that enabled the deep learning revolution in computer vision. Co-founded AI4ALL to promote diversity in AI.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Dario Amodei</div>
+                <div class="years">1984–</div>
+                <div class="role">Co-founder and CEO of Anthropic (2021–present). Former OpenAI research VP. Led the development of Claude and constitutional AI safety techniques.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Frank Rosenblatt</div>
+                <div class="years">1928–1971</div>
+                <div class="role">Invented the Perceptron (1958) and built the Mark I, the first working hardware neural network. His work on machine learning anticipated deep learning by decades.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Herbert Simon</div>
+                <div class="years">1916–2001</div>
+                <div class="role">Nobel laureate in Economics (1978) who co-built the Logic Theorist (1956) and GPS, pioneering symbolic AI. Predicted AI breakthroughs with remarkable accuracy.</div>
+            </div>
+            <div class="figure-card">
+                <div class="name">Andrew Ng</div>
+                <div class="years">1976–</div>
+                <div class="role">Led Stanford's AI Lab, co-founded Google Brain (2011), and popularized deep learning at scale. Founded Coursera and Landing AI. The most influential AI educator globally.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- Key Institutions -->
+    <!-- ===================== -->
+    <section class="section" id="institutions">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(160,160,176,0.15);color:#a0a0b0">
+                <span>&#9679;</span> Key Institutions
+            </div>
+            <h2>Where AI Was Built</h2>
+            <p class="section-intro">The universities, labs, and companies that shaped the field.</p>
+        </div>
+
+        <div class="institutions-grid">
+            <div class="institution-card">
+                <div class="name">MIT AI Lab / CSAIL</div>
+                <div class="type">University Research Lab</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Stanford AI Lab (SAIL)</div>
+                <div class="type">University Research Lab</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Carnegie Mellon University</div>
+                <div class="type">University</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">DARPA</div>
+                <div class="type">Government / Defense</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">IBM Research</div>
+                <div class="type">Corporate Research</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Bell Labs</div>
+                <div class="type">Corporate Research</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">SRI International</div>
+                <div class="type">Research Institute</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">DeepMind (Google)</div>
+                <div class="type">Corporate AI Lab</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Google Brain</div>
+                <div class="type">Corporate AI Lab</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">OpenAI</div>
+                <div class="type">AI Research Company</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Anthropic</div>
+                <div class="type">AI Safety Company</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Meta AI (FAIR)</div>
+                <div class="type">Corporate AI Lab</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Microsoft Research</div>
+                <div class="type">Corporate Research</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">xAI (Elon Musk)</div>
+                <div class="type">AI Startup</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Element AI</div>
+                <div class="type">AI Startup (Acquired)</div>
+            </div>
+            <div class="institution-card">
+                <div class="name">Vector Institute (Toronto)</div>
+                <div class="type">Research Institute</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- Full Timeline -->
+    <!-- ===================== -->
+    <section class="section" id="timeline">
+        <div class="section-header">
+            <div class="era-badge" style="background:rgba(160,160,176,0.15);color:#a0a0b0">
+                <span>&#9679;</span> Complete Timeline
+            </div>
+            <h2>Major Milestones</h2>
+            <p class="section-intro">80+ years of artificial intelligence in one view.</p>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table class="milestone-table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Milestone</th>
+                        <th>Era</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="year-cell">1943</td>
+                        <td>McCulloch & Pitts publish first artificial neuron model</td>
+                        <td><span class="era-tag" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">Foundations</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1949</td>
+                        <td>Hebbian learning rule published — "neurons that fire together, wire together"</td>
+                        <td><span class="era-tag" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">Foundations</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1950</td>
+                        <td>Turing publishes "Computing Machinery and Intelligence" — the Turing Test</td>
+                        <td><span class="era-tag" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">Foundations</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1956</td>
+                        <td>Dartmouth Conference — the term "Artificial Intelligence" is coined</td>
+                        <td><span class="era-tag" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">Foundations</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1956</td>
+                        <td>Logic Theorist — first AI program, proves theorems from Principia Mathematica</td>
+                        <td><span class="era-tag" style="background:rgba(225,112,85,0.15);color:var(--era-1940s)">Foundations</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1958</td>
+                        <td>Rosenblatt builds Mark I Perceptron — first hardware neural network</td>
+                        <td><span class="era-tag" style="background:rgba(253,203,110,0.15);color:var(--era-1960s)">Early Optimism</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1964</td>
+                        <td>ELIZA — first chatbot, built by Joseph Weizenbaum at MIT</td>
+                        <td><span class="era-tag" style="background:rgba(253,203,110,0.15);color:var(--era-1960s)">Early Optimism</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1966</td>
+                        <td>Shakey robot — first general-purpose mobile robot with planning and perception</td>
+                        <td><span class="era-tag" style="background:rgba(253,203,110,0.15);color:var(--era-1960s)">Early Optimism</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1969</td>
+                        <td>Minsky & Papert's Perceptrons book triggers funding collapse</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1972</td>
+                        <td>MYCIN — expert system for medical diagnosis, 70%+ accuracy vs experts</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1973</td>
+                        <td>Lighthill Report — UK government cuts AI funding following pessimistic review</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1981</td>
+                        <td>Japan announces Fifth Generation Computer Project (FGCS)</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1986</td>
+                        <td>Backpropagation published by Rumelhart, Hinton & Williams — connectionist revival</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1988</td>
+                        <td>Second AI Winter — expert systems fail to scale; Lisp machine market collapses</td>
+                        <td><span class="era-tag" style="background:rgba(116,185,255,0.15);color:var(--era-1970s)">AI Winter</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1989</td>
+                        <td>World Wide Web publicly launched by Tim Berners-Lee</td>
+                        <td><span class="era-tag" style="background:rgba(85,239,196,0.15);color:var(--era-1990s)">Rebirth</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1991</td>
+                        <td>Statistical methods begin replacing symbolic AI as dominant paradigm</td>
+                        <td><span class="era-tag" style="background:rgba(85,239,196,0.15);color:var(--era-1990s)">Rebirth</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1997</td>
+                        <td>IBM Deep Blue defeats world chess champion Garry Kasparov</td>
+                        <td><span class="era-tag" style="background:rgba(85,239,196,0.15);color:var(--era-1990s)">Rebirth</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">1998</td>
+                        <td>LeNet-5: LeCun's convolutional neural networks for handwritten digit recognition</td>
+                        <td><span class="era-tag" style="background:rgba(85,239,196,0.15);color:var(--era-1990s)">Rebirth</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2006</td>
+                        <td>Hinton publishes Deep Belief Networks — the "deep learning awakening"</td>
+                        <td><span class="era-tag" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">Deep Learning</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2008</td>
+                        <td>Andrew Ng demonstrates large-scale deep learning for speech recognition at Google</td>
+                        <td><span class="era-tag" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">Deep Learning</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2009</td>
+                        <td>ImageNet launched — 14 million labeled images that would power the vision revolution</td>
+                        <td><span class="era-tag" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">Deep Learning</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2011</td>
+                        <td>IBM Watson defeats Ken Jennings and Brad Rutter on Jeopardy!</td>
+                        <td><span class="era-tag" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">Deep Learning</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2012</td>
+                        <td>AlexNet wins ImageNet competition by 10+ percentage points — deep learning era begins</td>
+                        <td><span class="era-tag" style="background:rgba(162,155,254,0.15);color:var(--era-2000s)">Deep Learning</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2014</td>
+                        <td>Ian Goodfellow introduces Generative Adversarial Networks (GANs)</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2016</td>
+                        <td>DeepMind AlphaGo defeats Lee Sedol 4–1 in Go match in Seoul</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2017</td>
+                        <td>"Attention Is All You Need" — Vaswani et al. introduce the Transformer</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2018</td>
+                        <td>BERT and GPT-1 — foundation model paradigm established</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2019</td>
+                        <td>GPT-2 released — 1.5B params; OpenAI withholds full model citing misuse risk</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2020</td>
+                        <td>GPT-3 — 175B parameters, few-shot learning at scale, API launched</td>
+                        <td><span class="era-tag" style="background:rgba(253,121,168,0.15);color:var(--era-2010s)">Transformer Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2021</td>
+                        <td>DALL-E, CLIP, and latent diffusion models — generative AI goes mainstream</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2022</td>
+                        <td>ChatGPT launched by OpenAI — 1M users in 5 days, 100M in 2 months</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2022</td>
+                        <td>Stable Diffusion open-sourced — democratizes image generation globally</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2023</td>
+                        <td>GPT-4 (multimodal), Claude 2, Google Bard/Gemini — LLM arms race intensifies</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2023</td>
+                        <td>EU AI Act agreement — world's first comprehensive AI regulation</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2024</td>
+                        <td>OpenAI o1/o3 — inference-time compute scaling, PhD-level reasoning</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2024</td>
+                        <td>Geoffrey Hinton wins Nobel Prize in Physics for artificial neural networks</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">2025</td>
+                        <td>Claude 4, GPT-5, Gemini 2, Llama 4 — multimodal reasoning and agentic AI</td>
+                        <td><span class="era-tag" style="background:rgba(0,184,148,0.15);color:var(--era-2020s)">Current Era</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="#" class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">&#8679; Back to top</a>
+        <p>The Complete History of Artificial Intelligence &mdash; Research Report<br>
+        Compiled from peer-reviewed sources, primary literature, and historical records.<br>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem">Last updated: March 2026</span></p>
+    </footer>
+</div>
+
+</body>
+</html>
