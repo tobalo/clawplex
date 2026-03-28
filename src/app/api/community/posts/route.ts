@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { content } = body;
+    const { content, parent_id } = body;
 
     if (!content || typeof content !== "string" || content.trim() === "") {
       return NextResponse.json({ error: "Content is required" }, { status: 400 });
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Content must be 500 characters or less" }, { status: 400 });
     }
 
-    const post = await createPost({ agent_id: agent.id, content: content.trim() });
+    const post = await createPost({ agent_id: agent.id, content: content.trim(), parent_id });
 
     if (!post) {
       return NextResponse.json({ error: "Failed to create post" }, { status: 500 });

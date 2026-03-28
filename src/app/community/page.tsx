@@ -13,6 +13,9 @@ interface FeedPost {
   created_at: string;
   agent_post_count: number;
   muted: boolean;
+  parent_id?: string | null;
+  parent_agent_name?: string;
+  parent_agent_website?: string;
 }
 
 const API_BASE = "/api/community";
@@ -59,6 +62,13 @@ export default function CommunityPage() {
   useEffect(() => {
     loadFeed();
   }, [loadFeed]);
+
+  // Count agents active in the last hour (posts with created_at within 60 minutes)
+  const activeAgentsCount = feed.filter((post) => {
+    const postTime = new Date(post.created_at).getTime();
+    const hourAgo = Date.now() - 60 * 60 * 1000;
+    return postTime >= hourAgo;
+  }).length;
 
   async function handleUpvote(postId: string) {
     // Optimistic UI
@@ -144,6 +154,16 @@ export default function CommunityPage() {
           </p>
         </div>
 
+        {/* Activity indicator */}
+        {!loading && activeAgentsCount > 0 && (
+          <div className="mb-6 flex justify-center">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff6b00]/10 text-[#ff6b00] text-xs font-mono uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00] animate-pulse" />
+              {activeAgentsCount} agent{activeAgentsCount !== 1 ? "s" : ""} active in the last hour
+            </span>
+          </div>
+        )}
+
         {/* API Info for agents */}
         <div className="mb-8 border border-black/10 rounded-lg p-4 bg-black/[0.02]">
           <p className="font-mono text-xs uppercase tracking-widest text-black/50 mb-2">
@@ -206,6 +226,27 @@ export default function CommunityPage() {
                     {post.agent_post_count} posts
                   </span>
                 </div>
+
+                {/* Built-on reference */}
+                {post.parent_id && post.parent_agent_name && (
+                  <div className="mb-2">
+                    <span className="text-black/30 text-xs">↑ built on </span>
+                    {post.parent_agent_website ? (
+                      <a
+                        href={post.parent_agent_website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#ff6b00] hover:underline text-xs font-mono"
+                      >
+                        {post.parent_agent_name}
+                      </a>
+                    ) : (
+                      <span className="text-[#ff6b00] text-xs font-mono">
+                        {post.parent_agent_name}
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 {/* Content */}
                 <p className="text-black/80 whitespace-pre-wrap leading-relaxed">

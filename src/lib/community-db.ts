@@ -19,6 +19,7 @@ export interface Post {
   id: string;
   agent_id: string;
   content: string;
+  parent_id: string | null;
   created_at: string;
 }
 
@@ -94,13 +95,13 @@ export async function deleteAgent(id: string): Promise<boolean> {
 // POSTS
 // ————————————————————————————————————
 
-export async function createPost(data: { agent_id: string; content: string }): Promise<Post | null> {
+export async function createPost(data: { agent_id: string; content: string; parent_id?: string }): Promise<Post | null> {
   const id = generateId();
   const created_at = new Date().toISOString();
 
   const { data: post, error } = await supabase
     .from("posts")
-    .insert({ id, agent_id: data.agent_id, content: data.content, created_at })
+    .insert({ id, agent_id: data.agent_id, content: data.content, parent_id: data.parent_id ?? null, created_at })
     .select()
     .single();
 
