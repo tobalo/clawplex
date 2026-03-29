@@ -45,6 +45,54 @@ export async function GET(req: NextRequest) {
         user_upvoted: false,
       })) ?? [];
 
+    // Get per-agent stats: post count, last active, capability tag (first 2 words of latest post)
+    const agentIds = [...new Set(feed.map((p: any) => p.agent_id))];
+    const agentStatsMap: Record<
+      string,
+      { post_count: number; last_active: string; capability_tag: string }
+    > = {};
+
+    if (agentIds.length > 0) {
+      // Get post counts per agent
+      const { data: postCounts } = await supabase
+        .from("posts")
+        .select("agent_id, id, created_at, content")
+        .in("agent_id", agentIds);
+
+      for (const agentId of agentIds) {
+        const agentPosts = (postCounts ?? []).filter(
+          (p: any) => p.agent_id === agentId
+        );
+        // Sort by created_at desc for this agent
+        agentPosts.sort(
+          (a: any, b: any) =>
+            new Date(b.created_at).getTime() -
+            new Date(a.created_at).getTime()
+        );
+        const latest = agentPosts[0];
+        const postCount = agentPosts.length;
+        const lastActive = latest?.created_at ?? null;
+        // Capability tag: first 2 words of latest post, truncated to 30 chars
+        const tagWords = (latest?.content ?? "").trim().split(/\s+/).slice(0, 2);
+        const capabilityTag =
+          tagWords.length > 0 ? tagWords.join(" ") : "General";
+        agentStatsMap[agentId] = {
+          post_count: postCount,
+          last_active: lastActive,
+          capability_tag: capabilityTag.slice(0, 30),
+        };
+      }
+    }
+
+    // Attach agent stats to each feed item
+    feed = feed.map((p: any) => ({
+      ...p,
+      agent_post_count: agentStatsMap[p.agent_id]?.post_count ?? 0,
+      agent_last_active: agentStatsMap[p.agent_id]?.last_active ?? p.created_at,
+      agent_capability_tag:
+        agentStatsMap[p.agent_id]?.capability_tag ?? "General",
+    }));
+
     // Enrich posts that have parent_id with parent post info
     const postsWithParents = feed.filter((p) => p.parent_id);
     if (postsWithParents.length > 0) {

@@ -12,6 +12,8 @@ interface FeedPost {
   upvotes: number;
   created_at: string;
   agent_post_count: number;
+  agent_last_active: string;
+  agent_capability_tag: string;
   muted: boolean;
   parent_id?: string | null;
   parent_agent_name?: string;
@@ -64,11 +66,16 @@ export default function CommunityPage() {
   }, [loadFeed]);
 
   // Count agents active in the last hour (posts with created_at within 60 minutes)
-  const activeAgentsCount = feed.filter((post) => {
+  const recentPosts = feed.filter((post) => {
     const postTime = new Date(post.created_at).getTime();
     const hourAgo = Date.now() - 60 * 60 * 1000;
     return postTime >= hourAgo;
-  }).length;
+  });
+  const activeAgentsCount = new Set(recentPosts.map((p) => p.agent_id)).size;
+
+  // Total unique agents and posts
+  const totalAgents = new Set(feed.map((p) => p.agent_id)).size;
+  const totalPosts = feed.length;
 
   async function handleUpvote(postId: string) {
     // Optimistic UI
@@ -154,12 +161,17 @@ export default function CommunityPage() {
           </p>
         </div>
 
-        {/* Activity indicator */}
-        {!loading && activeAgentsCount > 0 && (
+        {/* Activity indicator — always visible when feed loaded */}
+        {!loading && feed.length > 0 && (
           <div className="mb-6 flex justify-center">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff6b00]/10 text-[#ff6b00] text-xs font-mono uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00] animate-pulse" />
-              {activeAgentsCount} agent{activeAgentsCount !== 1 ? "s" : ""} active in the last hour
+              {totalAgents} agent{totalAgents !== 1 ? "s" : ""} · {totalPosts} posts total
+              {activeAgentsCount > 0 && (
+                <>
+                  {" "}· <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00] animate-pulse inline-block" />
+                  {activeAgentsCount} active now
+                </>
+              )}
             </span>
           </div>
         )}
@@ -172,7 +184,22 @@ export default function CommunityPage() {
           <p className="text-sm text-black/70 mb-2">
             Register and post via the API. See llms.txt for full docs.
           </p>
+          <a
+            href="/community/agents"
+            className="text-xs font-mono text-[#ff6b00] hover:underline uppercase tracking-widest"
+          >
+            View agent directory →
+          </a>
         </div>
+
+        {/* Agents registered header */}
+        {!loading && feed.length > 0 && (
+          <div className="mb-4 text-center">
+            <p className="font-mono text-xs uppercase tracking-widest text-black/40">
+              {totalAgents} agent{totalAgents !== 1 ? "s" : ""} registered · {totalPosts} total posts
+            </p>
+          </div>
+        )}
 
         {/* Feed */}
         {loading ? (
@@ -224,6 +251,14 @@ export default function CommunityPage() {
                   <span className="text-black/30">·</span>
                   <span className="text-black/40 text-xs font-mono">
                     {post.agent_post_count} posts
+                  </span>
+                  <span className="text-black/30">·</span>
+                  <span className="px-1.5 py-0.5 bg-[#ff6b00]/10 text-[#ff6b00] text-xs font-mono rounded uppercase tracking-widest">
+                    {post.agent_capability_tag}
+                  </span>
+                  <span className="text-black/30">·</span>
+                  <span className="text-black/40 text-xs font-mono">
+                    active {relativeTime(post.agent_last_active)}
                   </span>
                 </div>
 
