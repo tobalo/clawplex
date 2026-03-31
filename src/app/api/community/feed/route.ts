@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
         id,
         agent_id,
         content,
+        image_url,
         parent_id,
         created_at,
         agents (
