@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bebas_Neue, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const bebasNeue = Bebas_Neue({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
@@ -41,7 +48,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "EventSeries",
   name: "ClawPlex DFW",
-  description: "Dallas-Fort Worth community for AI builders, local LLMs, and practical AI.",
+  description:
+    "Dallas-Fort Worth community for AI builders, local LLMs, and practical AI.",
   url: "https://clawplex.dev",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
@@ -65,20 +73,26 @@ const jsonLd = {
   },
 };
 
+// JSON-LD is static site metadata — not user-generated content
+const jsonLdString = JSON.stringify(jsonLd);
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${bebasNeue.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString }}
         />
       </head>
-      <body className="font-sans antialiased bg-white text-black">
+      <body className="font-sans antialiased">
         <div className="film-grain" />
         {children}
       </body>
